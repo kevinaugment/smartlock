@@ -61,16 +61,13 @@ Positive door close requires spring-loaded latch engaging strike plate recess wi
 ### 2. Door Sensor Issues (25%)
 
 **Problem:**
-```text
-Sensor wrong:
+```Sensor wrong:
 - Says "open" when closed
 - Says "closed" when open
 - Auto-lock based on wrong info
-```text
-
+```
 **Fix:**
-```text
-- Test sensor accuracy:
+```- Test sensor accuracy:
   - Close door
   - Check app: Shows "Closed"?
   - Open door
@@ -85,22 +82,18 @@ Sensor wrong:
   - If sensor unreliable
   - Use timeout-only
   - Less ideal but more reliable
-```text
-
+```
 ### 3. Timeout Too Short (15%)
 
 **Problem:**
-```text
-Auto-lock triggers while:
+```Auto-lock triggers while:
 - Still unloading car
 - Carrying groceries
 - Multiple trips in/out
 equals Door relocks before you're done
-```text
-
+```
 **Fix:**
-```text
-- Extend timeout:
+```- Extend timeout:
   - Current: 3 minutes (too short)
   - Try: 5-10 minutes
   - Adjust based on your usage
@@ -114,21 +107,17 @@ equals Door relocks before you're done
   - Some platforms support
   - Auto-lock disabled when home
   - Auto-enables when away
-```text
-
+```
 ### 4. Multiple Triggers (10%)
 
 **Problem:**
-```text
-Auto-lock triggers repeatedly:
+```Auto-lock triggers repeatedly:
 - Locks → Manual unlock → Locks again
 - Annoying cycle
 - Happens immediately after unlock
-```text
-
+```
 **Fix:**
-```text
-- Add delay after manual unlock:
+```- Add delay after manual unlock:
   - "Don't auto-lock if manually unlocked"
   - Requires smart automation
   - Home Assistant, IFTTT
@@ -142,15 +131,13 @@ Auto-lock triggers repeatedly:
   - Privacy mode (some locks)
   - Temporarily disables auto-lock
   - Remember to re-enable
-```text
-
+```
 ## Optimization Strategies
 
 ### Timing Configuration
 
 **Find optimal delay:**
-```text
-Test different timeouts:
+```Test different timeouts:
 - Start with 10 minutes (generous)
 - Monitor for 1 week:
   - Too long? Door left unlocked?
@@ -164,13 +151,11 @@ Factors to consider:
 - Multiple trips common?
 - Kids forgetting to lock?
 - Visitor patterns?
-```text
-
+```
 ### Conditional Auto-Lock
 
 **Smart conditions:**
-```text
-- Auto-lock when:
+```- Auto-lock when:
   ✓ Last person leaves (geofence)
   ✓ After sunset (nighttime security)
   ✓ Been unlocked >X minutes
@@ -181,13 +166,11 @@ Factors to consider:
   ✗ "Expecting delivery" mode active
   ✗ Party mode (frequent in/out)
   ✗ Door open (prevents jamming)
-```text
-
+```
 ### Multi-Method Approach
 
 **Layers of automation:**
-```text
-Primary: Timeout-based (5 min)
+```Primary: Timeout-based (5 min)
   - Simple, always works
   - Catches most cases
 
@@ -198,14 +181,12 @@ Backup: Geofence (when leaving)
 Final: Manual check
   - Before bed, manually verify
   - Don't rely 100% on automation
-```text
-
+```
 ## Testing Auto-Lock
 
 ### Systematic Test
 
-```text
-- Test 1: Normal operation
+```- Test 1: Normal operation
   - Unlock door
   - Close door
   - Wait full timeout
@@ -242,13 +223,11 @@ Final: Manual check
   - Success rate ____/10
   - 9-10/10 equals Good
   - <8/10 equals Needs improvement
-```text
-
+```
 ## Troubleshooting Failed Auto-Lock
 
 **When auto-lock does not trigger:**
-```text
-- Check configuration:
+```- Check configuration:
   - Auto-lock enabled?
   - Timeout value set?
   - Conditions met?
@@ -275,8 +254,7 @@ Final: Manual check
   - Lock online?
   - Hub online?
   - Can't auto-lock if offline
-```text
-
+```
 ## Platform-Specific Tips
 
 **HomeKit:**
@@ -303,8 +281,7 @@ Final: Manual check
 ## Safety Considerations
 
 **Important:**
-```text
-⚠️ Auto-lock can lock you out
+```⚠️ Auto-lock can lock you out
 ⚠️ Ensure you have backup access:
   ✓ Physical key on person
   ✓ Phone with you (app access)
@@ -314,8 +291,7 @@ Final: Manual check
   ✓ Manually verify before bed
   ✓ Check door actually closed
   ✓ Don't assume it worked
-```text
-
+```
 ## Related Resources
 
 **Setup:**

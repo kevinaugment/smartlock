@@ -443,10 +443,27 @@ Temporary code management centers on temporal configuration precision rather tha
 
 **Conservative buffer strategies** prove operationally superior to tight access windows despite appearing security-compromising: starting codes 1-2 hours pre-check-in accommodates flight delays, traffic, timezone confusion, and early arrivals without requiring panicked host intervention, while extending expiration to end-of-day (11:59 PM) rather than precise checkout time (11:00 AM) eliminates late departure anxiety and forgotten-item re-entry scenarios. The marginal security exposure from extended access windows proves negligible compared to operational friction from rigid timing creating guest frustration and host emergency troubleshooting.
 
-**Pre-arrival testing discipline** transforms theoretical access into verified functionality: personally testing codes 12-24 hours before guest arrival detects synchronization failures, configuration errors, or system outages while resolution time remains available, rather than discovering problems through guest emergency calls moments after property arrival. This proactive verification represents insurance against cloud service outages, network connectivity issues, or application bugs that render codes non-functional despite correct configuration.
+**Pre-arrival testing discipline** transforms theoretical access into verified functionality: personally testing codes 12-24 hours before guest arrival detects synchronization failures, configuration errors, or system outages while resolution time remains available, rather than discovering problems through guest emergency calls moments after property arrival. 
 
-**Descriptive naming conventions** enable rapid code identification and cleanup: labels like "Guest-SmithFamily-3/15-18" immediately communicate purpose, occupant, and validity period without consulting external booking records, facilitating monthly audit reviews identifying codes that failed to auto-expire (signaling system bugs requiring manual deletion). Generic labels like "Guest1" or "Temp Code" create administrative overhead requiring cross-referencing to determine code purpose and intended lifespan.
+## Tools & Resources
 
-**Post-checkout verification** closes the access lifecycle: confirming codes display "Expired" status in application after guest departure, manually deleting any remaining active, and reviewing access logs for post-checkout entry attempts (signaling code-sharing violations or past guests attempting re-entry). This verification catches auto-expiration failures before security exposure accumulates across multiple bookings.
+🧮 **[STR ROI Calculator](/tools/short-term-rental-roi-calculator)** - Calculate guest access automation value  
+👥 **[Credential Capacity Planner](/tools/credential-capacity-planner)** - Plan guest code capacity  
+🔧 **[Protocol Wizard](/tools/protocol-selection-wizard)** - Choose best protocol for STR
 
-**The reliability hierarchy**: Conservative start times (early) + generous end times (late) + 11:59 PM expiration + pre-arrival testing + post-checkout verification creates defense-in-depth against individual failure modes. Inverting priorities—tight windows maximizing security posture while neglecting buffer strategies—optimizes wrong variable: access failures create operational crises while extended windows create only theoretical exposure rarely manifesting as actual security events.
+---
+
+## Related Articles
+
+**Use Case Guides:**
+- [Airbnb Complete Guide](/use-cases/smart-locks-airbnb-complete-guide) - STR automation strategies
+- [Long-Term Rental Strategy](/use-cases/long-term-rental-strategy) - Contractor access management
+
+**Access Management:**
+- [Share Access Securely](/support/share-access-securely) - Best practices for sharing
+- [Delete Smart Lock User](/support/delete-smart-lock-user) - Remove old guest codes
+- [Change Master Code](/support/change-master-code) - Update administrative codes
+
+**Troubleshooting:**
+- [Complete Troubleshooting Guide](/guides/complete-troubleshooting-guide) - Fix code issues
+- [PIN Code Not Working](/support/smart-lock-code-not-working) - Code troubleshooting

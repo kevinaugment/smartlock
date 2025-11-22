@@ -37,22 +37,18 @@ Stability hierarchy: signal strength improvement from marginal -80 dBm to strong
 ### What Good Stability Looks Like
 
 **Metrics:**
-```text
-Uptime: >99% (offline <1 hour/week)
+```Uptime: >99% (offline <1 hour/week)
 Response time: <1 second consistent
 Success rate: >98% commands succeed first try
 Battery life: Matches expected (12 months Zigbee/Z-Wave)
-```text
-
+```
 **User experience:**
-```text
-✅ Lock always shows "Online" in app
+```✅ Lock always shows "Online" in app
 ✅ Commands execute immediately (<1 sec)
 ✅ Status updates in real-time
 ✅ No "No Response" errors
 ✅ Auto-lock/unlock works reliably
-```text
-
+```
 ### Common Stability Problems
 
 **Intermittent offline:**
@@ -75,19 +71,16 @@ Battery life: Matches expected (12 months Zigbee/Z-Wave)
 ### 1. Add Strategic Repeaters (Highest Impact)
 
 **Why it works:**
-```text
-Without repeater:
+```Without repeater:
 Lock ←---40 feet---→ Hub (weak signal, -85 dBm)
 equals Packet loss, retries, timeouts
 
 With repeater:
 Lock ←-20ft-→ Repeater ←-20ft-→ Hub (strong signal, -65 dBm)
 equals Clean connection, fast, reliable
-```text
-
+```
 **Implementation:**
-```text
-- Check signal strength first
+```- Check signal strength first
   - App → Device Info → RSSI or Signal
   - RSSI < -80 dBm equals Needs repeater
 
@@ -105,8 +98,7 @@ equals Clean connection, fast, reliable
   - Check new RSSI (should be -60 to -75)
   - Test lock/unlock 10 times
   - Monitor for 24 hours
-```text
-
+```
 **Expected improvement:**
 - Offline events: -70-90%
 - Response time: 2-3× faster
@@ -115,19 +107,16 @@ equals Clean connection, fast, reliable
 ### 2. Optimize RF Channel (Zigbee/Thread)
 
 **Why it matters:**
-```text
-Overlapping channels:
+```Overlapping channels:
 WiFi Ch 6 + Zigbee Ch 20 equals Heavy interference
 equals Packet collisions, retries, slow response
 
 Separated channels:
 WiFi Ch 6 + Zigbee Ch 25 equals No interference
 equals Clean communication, fast, reliable
-```text
-
+```
 **Find optimal channel:**
-```text
-- Download WiFi analyzer app (free)
+```- Download WiFi analyzer app (free)
   - iOS: WiFiman, Airport Utility
   - Android: WiFi Analyzer
 
@@ -148,8 +137,7 @@ equals Clean communication, fast, reliable
 - Test improvement
   - Monitor for 2-3 days
   - Especially during peak WiFi times (6-10pm)
-```text
-
+```
 **Expected improvement:**
 - Evening slowdowns: Eliminated
 - Command success rate: +10-30%
@@ -158,17 +146,14 @@ equals Clean communication, fast, reliable
 ### 3. Update Firmware (Hub and Lock)
 
 **Why it helps:**
-```text
-Firmware updates include:
+```Firmware updates include:
 - Bug fixes  - connectivity issues
 - Protocol optimizations  - better routing
 - Security patches  - prevent exploits
 - Feature improvements  - battery life
-```text
-
+```
 **Update process:**
-```text
-- Update hub firmware first
+```- Update hub firmware first
   - Hub → Settings → System → Update
   - May take 5-15 minutes
   - Hub restarts automatically
@@ -187,8 +172,7 @@ Firmware updates include:
   - Lock/unlock 10 times
   - Check status updates
   - Monitor for 24 hours
-```text
-
+```
 **Check for updates:**
 - Yale: Yale Access app → Lock → Settings → Firmware
 - Schlage: Schlage Home app → Lock → About
@@ -198,8 +182,7 @@ Firmware updates include:
 ### 4. Enable Mesh Network Redundancy
 
 **Why redundancy matters:**
-```text
-Single path:
+```Single path:
 Lock → Repeater1 → Hub
 If Repeater1 fails equals Lock offline
 
@@ -208,11 +191,9 @@ Lock → Repeater1 → Hub (primary)
 Lock → Repeater2 → Hub (backup)
 If Repeater1 fails equals Lock switches to Repeater2 automatically
 equals Never offline
-```text
-
+```
 **Build redundant network:**
-```text
-- Add multiple repeaters
+```- Add multiple repeaters
   - Minimum: 2 repeaters for critical locks
   - Optimal: 3+ repeaters per floor
 
@@ -223,8 +204,7 @@ equals Never offline
 - Verify multiple paths exist
   - Some hubs show network topology
   - Lock should have 2-3 neighbor devices
-```text
-
+```
 **Expected improvement:**
 - Zero downtime during repeater failures
 - Faster route recovery
@@ -233,8 +213,7 @@ equals Never offline
 ### 5. Reduce Network Congestion
 
 **For busy networks (30+ devices):**
-```text
-- Remove unused/offline devices
+```- Remove unused/offline devices
   - Old devices clog network
   - Hub → Devices → Remove stale devices
 
@@ -251,8 +230,7 @@ equals Never offline
 - Consider splitting network
   - Use 2 hubs for large deployments
   - North wing + South wing separate
-```text
-
+```
 **Expected improvement:**
 - Faster commands  - less queue delay
 - More reliable  - less collision
@@ -262,49 +240,40 @@ equals Never offline
 
 ### Zigbee Locks
 
-```text
-- Change to channel 25 or 26 (least WiFi overlap)
+```- Change to channel 25 or 26 (least WiFi overlap)
 - Use Zigbee 3.0 devices only (better routing)
 - Add repeaters every 30-40 feet
 - Update to latest Zigbee stack
 - Avoid smart bulbs as repeaters (can be turned off)
-```text
-
+```
 ### Z-Wave Locks
 
-```text
-- Already optimal (sub-GHz, less interference)
+```- Already optimal (sub-GHz, less interference)
 - Ensure Z-Wave Plus (not classic Z-Wave)
 - Run network heal monthly (SmartThings/Hubitat)
 - Add repeaters for >40 feet through walls
 - Use S2 security (better reliability than S0)
-```text
-
+```
 ### Thread Locks
 
-```text
-- Ensure Thread Border Router always online
+```- Ensure Thread Border Router always online
 - Similar to Zigbee (2.4GHz optimization)
 - Check Thread network status in app
 - Add Thread routers (smart plugs with Thread)
-```text
-
+```
 ### WiFi Locks
 
-```text
-- Strong WiFi signal critical (use WiFi extender/mesh)
+```- Strong WiFi signal critical (use WiFi extender/mesh)
 - Use 2.4GHz only (better range than 5GHz)
 - Reserve DHCP IP for lock (prevent IP conflicts)
 - QoS priority for lock MAC address (router settings)
 - Accept 1-3 second latency (cloud routing)
-```text
-
+```
 ## Monitoring and Maintenance
 
 ### Weekly Checks
 
-```text
-- Check lock status in app
+```- Check lock status in app
   - Online? Battery level? Signal strength?
 
 - Test lock/unlock once
@@ -312,12 +281,10 @@ equals Never offline
 
 - Review notifications
   - Any offline alerts?
-```text
-
+```
 ### Monthly Maintenance
 
-```text
-- Check battery level
+```- Check battery level
   - Replace at 30% (don't wait for 10%)
 
 - Review signal strength
@@ -328,52 +295,42 @@ equals Never offline
 
 - Test all access methods
   - PIN codes, app, voice, auto-unlock
-```text
-
+```
 ### Quarterly Audit
 
-```text
-- Remove unused user codes
+```- Remove unused user codes
 - Clean keypad (dirt can cause issues)
 - Verify backup key accessible
 - Test emergency access methods (9V battery)
 - Review network topology (if hub provides)
-```text
-
+```
 ## Advanced Techniques
 
 ### Network Heal (Z-Wave)
 
-```text
-SmartThings or Hubitat:
+```SmartThings or Hubitat:
 - Hub → Z-Wave Settings → Repair Network
 - Run overnight (takes 2-4 hours)
 - Rebuilds routing tables
 - Do this monthly
-```text
-
+```
 ### Force Route Rebuild (Zigbee)
 
-```text
-- Power cycle lock (remove batteries 30 sec)
+```- Power cycle lock (remove batteries 30 sec)
 - Lock searches for best path on reconnect
 - Usually finds optimal route
-```text
-
+```
 ### Channel Scanning (Advanced)
 
-```text
-Some hubs support channel quality scan:
+```Some hubs support channel quality scan:
 - Scans all Zigbee channels
 - Recommends best channel
 - Automatically migrates network
-```text
-
+```
 ## Troubleshooting Persistent Issues
 
 **If still unstable after optimization:**
-```text
-- Check for defective hardware
+```- Check for defective hardware
   - Try lock at different location
   - If works elsewhere equals Original location issue
   - If fails everywhere equals Lock or hub defect
@@ -387,8 +344,7 @@ Some hubs support channel quality scan:
   - WiFi unstable? → Switch to Zigbee/Z-Wave
   - Zigbee interference? → Switch to Z-Wave
   - Both fail? → Check physical environment
-```text
-
+```
 ## Related Resources
 
 **Network Optimization:**
@@ -396,14 +352,12 @@ Some hubs support channel quality scan:
 - [RF Coverage Estimator] - /tools/rf-coverage-estimator - Calculate repeaters
 
 **Troubleshooting:**
-- [Lock Goes Offline] - /support/smart-lock-keeps-going-offline - Fix offline issues
-- [Response Time Slow] - /support/smart-lock-response-slow - Speed optimization
+- [Lock Disconnects After Power Outage] - /support/smart-lock-disconnects-after-power-outage - Fix offline issues
+- [Complete Troubleshooting Guide] - /guides/complete-troubleshooting-guide - Speed optimization
 
 **Maintenance:**
 - [Battery Life Optimization] - /support/maximize-smart-lock-battery-life - Extend life
-- [Smart Lock Troubleshooting] - /installation/smart-lock-troubleshooting-guide - Full guide
-
----
+- [Complete Troubleshooting Guide] - /guides/complete-troubleshooting-guide - Full guide
 
 ## Summary: Infrastructure Over Configuration
 

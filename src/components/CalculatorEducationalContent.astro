@@ -1,0 +1,115 @@
+---
+/**
+ * 计算器教育内容组件
+ * 从Sanity CMS加载并显示计算器下方的教育内容
+ */
+
+interface Props {
+  calculatorSlug: string;
+}
+
+const { calculatorSlug } = Astro.props;
+
+// 从Sanity获取计算器数据
+import { client } from '@/lib/sanity'
+
+const calculator = await client.fetch(
+  `*[_type == "calculator" && slug.current == $slug][0] {
+    _id,
+    name,
+    educationalContent {
+      sectionTitle,
+      articles[] {
+        customTitle,
+        customDescription,
+        article-> {
+          title,
+          slug,
+          description,
+          category-> {
+            name,
+            slug
+          }
+        }
+      }
+    },
+    relatedTools {
+      sectionTitle,
+      tools[] {
+        customName,
+        customDescription,
+        tool-> {
+          name,
+          slug,
+          description,
+          url
+        }
+      }
+    }
+  }`,
+  { slug: calculatorSlug }
+)
+
+const hasEducationalContent = calculator?.educationalContent?.articles?.length > 0
+const hasRelatedTools = calculator?.relatedTools?.tools?.length > 0
+---
+
+{hasEducationalContent && (
+  <div class="mt-16">
+    <h2 class="text-3xl font-bold text-gray-900 mb-8">
+      {calculator.educationalContent.sectionTitle || 'Deep Dive'}
+    </h2>
+    <div class="grid gap-6 md:grid-cols-2">
+      {calculator.educationalContent.articles.map((item: any) => {
+        const article = item.article
+        const title = item.customTitle || article.title
+        const description = item.customDescription || article.description
+        const url = `/${article.category.slug.current}/${article.slug.current}`
+        
+        return (
+          <a 
+            href={url}
+            class="block rounded-lg border-2 border-primary-200 bg-white p-6 hover:border-primary-400 hover:shadow-lg transition-all"
+          >
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">
+              {title}
+            </h3>
+            <p class="text-gray-600">
+              {description}
+            </p>
+          </a>
+        )
+      })}
+    </div>
+  </div>
+)}
+
+{hasRelatedTools && (
+  <div class="mt-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">
+      {calculator.relatedTools.sectionTitle || 'Related Tools'}
+    </h2>
+    <div class="grid gap-4 md:grid-cols-3">
+      {calculator.relatedTools.tools.map((item: any) => {
+        const tool = item.tool
+        const name = item.customName || tool.name
+        const description = item.customDescription || tool.description
+        const url = tool.url || `/tools/${tool.slug.current}`
+        
+        return (
+          <a 
+            href={url}
+            class="block rounded-lg border border-gray-200 bg-white p-4 hover:border-primary-300 hover:shadow-md transition-all"
+          >
+            <h3 class="font-semibold text-gray-900 mb-1">
+              {name}
+            </h3>
+            <p class="text-sm text-gray-600">
+              {description}
+            </p>
+          </a>
+        )
+      })}
+    </div>
+  </div>
+)}

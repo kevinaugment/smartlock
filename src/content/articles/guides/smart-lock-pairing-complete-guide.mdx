@@ -125,6 +125,8 @@ featured: true
 
 **RSSI requirement:** -70 dBm minimum for pairing
 
+📖 **Related:** See our [battery life optimization guide](/installation/smart-lock-battery-life-guide) for how signal strength affects battery consumption.
+
 ---
 
 ## Zigbee Lock Pairing {#hub-pairing}
@@ -171,6 +173,8 @@ featured: true
    - Check signal strength (RSSI)
 
 **Typical pairing time:** 1-3 minutes
+
+📖 **Need help choosing hubs?** Check our [Zigbee vs Z-Wave comparison](/protocols/zigbee-vs-zwave-comparison) for protocol differences.
 
 ### Zigbee Pairing Troubleshooting {#discovery}
 
@@ -300,6 +304,8 @@ featured: true
 
 **Note:** DSK is device-specific, can't be calculated or guessed
 
+📖 **Security details:** Learn more about [Z-Wave S2 security](/security/smart-lock-security-complete-analysis#zwave-security) in our security analysis.
+
 #### Problem 2: Pairing Fails During Security Setup
 
 **Symptoms:**
@@ -328,6 +334,8 @@ featured: true
 2. ✅ Exclude lock (remove from network)
 3. ✅ Re-pair with proper S2 process
 4. ✅ Ensure DSK entry step completes
+
+📖 **After pairing:** Configure [secure settings](/support/secure-smart-lock-best-practices) to harden your lock.
 
 ---
 
@@ -498,7 +506,9 @@ featured: true
 **For Matter/Thread:**
 1. Add Thread Border Router
 2. Add Thread router devices
-3. Improve Border Router placement
+3. ✅ Improve Border Router placement
+
+🗺️ **Plan your network:** Use our [Mesh Network Planner](/tools/mesh-node-planner) to optimize router placement.
 
 ---
 
@@ -531,6 +541,8 @@ featured: true
 - ✅ Use QR code (easier than manual)
 - ✅ Choose Thread over WiFi for battery
 - ✅ Can add to multiple platforms after initial pairing
+
+📖 **Deployment guides:** Check [Airbnb setup](/use-cases/smart-locks-airbnb-complete-guide) or [enterprise deployment](/use-cases/enterprise-commercial-deployment) for scale.
 
 ---
 
@@ -582,18 +594,437 @@ featured: true
 
 **Note:** Some locks require exclusion from old hub first (Z-Wave especially)
 
+📖 **Troubleshooting:** If pairing still fails, see our [complete troubleshooting guide](/guides/complete-troubleshooting-guide).
+
 ---
 
 ## Tools & Resources
 
 🔧 **[Protocol Selection Wizard](/tools/protocol-selection-wizard)** - Choose best protocol  
 📡 **[RF Coverage Estimator](/tools/rf-coverage-estimator)** - Plan signal coverage  
-🔋 **[Battery Life Calculator](/tools/battery-life-calculator)** - Check expected battery life  
+🔋 **[Battery Life Calculator](/tools/battery-life-comparison)** - Check expected battery life  
+🔍 **[Smart Home Integration Checker](/tools/smart-home-integration-checker)** - Verify hub compatibility
 
 ---
 
 ## Related Articles
 
+### Protocol & Setup
 - [Protocol Overview](/protocols/smart-lock-protocols-overview) - Understand your lock's protocol
-- [Connection Stability](/support/improve-connection-stability) - Fix ongoing connection issues  
-- [Installation Guide](/installation/smart-lock-installation-complete-guide) - Proper installation basics
+- [Zigbee vs Z-Wave Comparison](/protocols/zigbee-vs-zwave-comparison) - Protocol differences
+- [Battery Life Guide](/installation/smart-lock-battery-life-guide) - Signal affects battery life
+
+### Installation & Configuration
+- [Installation Guide](/support/install-smart-lock-step-by-step) - Proper installation basics
+- [Door Compatibility](/guides/door-compatibility-guide) - Ensure door compatibility
+- [Secure Configuration](/support/secure-smart-lock-best-practices) - Post-pairing security
+
+### Troubleshooting
+- [Connection Stability](/support/improve-connection-stability) - Fix ongoing connection issues
+- [Complete Troubleshooting](/guides/complete-troubleshooting-guide) - Comprehensive problem solving
+- [Command Timeout Errors](/support/command-timeout-errors) - Timeout issues
+- [Power Outage Recovery](/support/smart-lock-disconnects-after-power-outage) - Reconnect after outage
+- [Emergency Battery Died](/support/emergency-battery-died-locked-out) - Lockout recovery
+
+### Use Cases
+- [Airbnb Setup](/use-cases/smart-locks-airbnb-complete-guide) - STR pairing tips
+- [Enterprise Deployment](/use-cases/enterprise-commercial-deployment) - Large-scale pairing
+- [Long-Term Rentals](/use-cases/long-term-rental-strategy) - Multi-property pairing
+
+---
+
+## Advanced Troubleshooting Scenarios
+
+### Scenario 1: Intermittent Pairing Success
+
+**Problem:** Lock pairs successfully sometimes, but fails randomly.
+
+```
+Pattern Analysis:
+├─ Success: 3 out of 7 attempts
+├─ No clear error message
+├─ Timing appears random
+└─ Frustrating "it works sometimes" issue
+```
+
+**Root causes:**
+1. **RF interference (70% of cases)**
+   - Other devices on same frequency
+   - Microwave oven nearby
+   - Baby monitors (2.4 GHz)
+   - Bluetooth devices
+
+2. **Low battery during pairing (15%)**
+   - Lock shows full battery
+   - But motor draw during pairing drops voltage
+   - Causes pairing to abort mid-process
+
+3. **Hub resource exhaustion (10%)**
+   - Hub is processing other devices
+   - Network healing in progress
+   - Firmware update running in background
+
+4. **WiFi DHCP issues (5%)**
+   - Lock gets IP but loses it
+   - Router DHCP pool exhausted
+   - IP conflict with another device
+
+**Systematic diagnosis:**
+
+```
+Step 1: Eliminate interference
+├─ Turn off ALL 2.4 GHz devices temporarily
+├─ Move 10 feet away from microwave
+├─ Disable Bluetooth on nearby devices
+└─ Test pairing (success? → interference confirmed)
+
+Step 2: Battery test
+├─ Install FRESH batteries (even if old show 100%)
+├─ Use lithium (not alkaline) for testing
+├─ Test pairing immediately after battery install
+└─ Success? → Battery issue confirmed
+
+Step 3: Hub isolation
+├─ Temporarily unpair other devices
+├─ Pair lock when hub is idle
+├─ Check hub CPU/memory usage
+└─ Success? → Resource contention confirmed
+
+Step 4: Network diagnostics
+├─ Reserve static IP for lock (DHCP reservation)
+├─ Expand DHCP pool if needed
+├─ Check router logs for IP conflicts
+└─ Success? → Network issue confirmed
+```
+
+**Permanent fix:** Address root cause identified above.
+
+---
+
+### Scenario 2: Pairing Succeeds But Lock Is Unresponsive
+
+**Problem:** Lock appears paired in app, but doesn't respond to any commands.
+
+```
+Symptoms:
+├─ Lock shows "online" or "connected"
+├─ Commands timeout or fail
+├─ Sometimes shows battery level correctly
+└─ But won't lock/unlock
+```
+
+**Common causes:**
+
+**Cause 1: Phantom pairing (lock not actually paired)**
+```
+Diagnosis:
+├─ Hub shows lock but no real communication
+├─ Lock doesn't know it's paired
+├─ Usually after failed pairing attempt
+
+Fix:
+├─ Factory reset lock
+├─ Remove from hub completely
+├─ Wait 5 minutes
+├─ Pair fresh with correct procedure
+└─ Verify bidirectional communication
+```
+
+**Cause 2: Paired but out of range**
+```
+Diagnosis:
+├─ Paired successfully near hub (10 feet)
+├─ Moved to final location (50 feet)
+├─ Too far for reliable communication
+├─ Pairing works, commands don't
+
+Fix:
+├─ Add mesh router/repeater devices
+├─ Move hub closer to lock
+├─ Use WiFi extender (WiFi locks)
+└─ Target: RSSI better than -70 dBm
+```
+
+**Cause 3: Missing device handler/driver**
+```
+Diagnosis:
+├─ Hub doesn't have proper lock driver
+├─ Shows as "generic Z-Wave device"
+├─ Can't interpret lock-specific commands
+├─ Common with newer lock models
+
+Fix:
+├─ Update hub firmware
+├─ Install manufacturer device handler
+├─ Check community forums for custom drivers
+└─ Wait for official driver release
+```
+
+---
+
+### Scenario 3: Previously Paired Lock Won't Re-Pair
+
+**Problem:** Lock worked fine, stopped responding, now won't re-pair.
+
+```
+Situation:
+├─ Lock worked for weeks/months
+├─ Suddenly became unresponsive
+├─ Removed from hub
+├─ Now won't pair again
+└─ Stuck in "ghost" state
+```
+
+**Resolution procedure:**
+
+```
+Step 1: Complete factory reset
+├─ Remove batteries for 60 seconds (not 10!)
+├─ Press lock button multiple times while out
+├─ Reinsert batteries
+├─ Perform manufacturer factory reset
+└─ Wait for confirmation beep/flash
+
+Step 2: Hub-side cleanup
+├─ Remove lock from hub
+├─ Perform Z-Wave exclude (even if not showing)
+├─ Clear hub cache if possible
+├─ Reboot hub completely
+└─ Wait 5 minutes for mesh to settle
+
+Step 3: Fresh pairing attempt
+├─ Start inclusion on hub
+├─ Activate pairing on lock within 10 seconds
+├─ Watch for DSK prompt (Z-Wave)
+├─ Complete security setup
+└─ Verify lock responds to commands
+
+Step 4: If still fails
+├─ Try different hub/controller temporarily
+├─ Update lock firmware if possible
+├─ Contact manufacturer support
+└─ Possible hardware failure
+```
+
+---
+
+## Multi-Lock Fleet Pairing
+
+### Best Practices for 10+ Locks
+
+**Scenario:** Property manager deploying 50 smart locks across buildings.
+
+**Challenges:**
+- Time-consuming if done individually (50 × 15 min = 12.5 hours)
+- Consistency required (all same network, settings)
+- Documentation needed (which lock is which)
+- Testing at scale
+
+**Optimized workflow:**
+
+```
+Preparation Phase (2 hours):
+├─ Create spreadsheet: Serial # | Location | DSK | Install Date
+├─ Label each lock with location code before install
+├─ Pre-configure hub with lock zones/rooms
+├─ Assign static IPs if WiFi locks
+└─ Prepare installation teams
+
+Installation Phase (1 day for 50 locks):
+├─ Team A: Installs locks physically (50 × 10 min = 8 hours, 2 people)
+├─ Team B: Pairs locks to network (50 × 5 min = 4 hours, 1 person)
+├─ Team C: Tests each lock (50 × 3 min = 2.5 hours, 1 person)
+└─ Parallel execution: 8 hours total with proper staffing
+
+Pairing Assembly Line:
+├─ Station 1: Power on lock, verify battery
+├─ Station 2: Start inclusion, enter DSK
+├─ Station 3: Assign to location, test command
+├─ Station 4: Document completion, QA check
+└─ Process 6-8 locks per hour per station
+
+Efficiency gains:
+├─ Serial process: 50 × 15 min = 12.5 hours
+├─ Parallel process: 50 ÷ 4 stations ÷ 5 locks/hr = 2.5 hours
+└─ 5× faster with organized workflow
+```
+
+**Quality assurance:**
+```
+Checklist per lock:
+├─ [ ] Physical installation secure
+├─ [ ] Paired with S2 security (Z-Wave) or equivalent
+├─ [ ] Lock/unlock test successful
+├─ [ ] Battery level >90%
+├─ [ ] RSSI better than -70 dBm
+├─ [ ] Location labeled correctly in hub
+├─ [ ] Documented in asset spreadsheet
+└─ [ ] Spare physical key stored securely
+```
+
+---
+
+## Performance Optimization After Pairing
+
+### Network Health Monitoring
+
+**Post-pairing optimization (first 48 hours):**
+
+```
+Hour 0-24: Mesh network self-optimization
+├─ Devices discover optimal routes
+├─ RSSI values stabilize
+├─ Battery consumption normalizes
+└─ Expected: Some command failures normal
+
+Hour 24-48: Network stabilization
+├─ Routes locked in
+├─ Performance should be consistent
+├─ If still issues → manual intervention needed
+└─ Expected: >95% command success rate
+
+Week 1-2: Baseline establishment
+├─ Track average response time
+├─ Monitor battery drain rate
+├─ Document RSSI values
+└─ Create performance baseline for future comparison
+```
+
+**Performance metrics to track:**
+
+| Metric | Target | Warning | Critical |
+|--------|--------|---------|----------|
+| **Command success rate** | >95% | 90-95% | <90% |
+| **Avg response time** | <2 sec | 2-5 sec | >5 sec |
+| **RSSI signal strength** | >-70 dBm | -70 to -80 | <-80 dBm |
+| **Battery drain** | <5%/month (mesh) | 5-10%/month | >10%/month |
+| **Failed messages** | <5/day | 5-20/day | >20/day |
+
+**When to add mesh routers:**
+```
+Indicators you need more routers:
+├─ RSSI consistently <-75 dBm
+├─ Command success <90%
+├─ Frequent "device unreachable" errors
+├─ Battery drains faster than expected
+└─ Locks >50 feet from hub
+
+Router placement strategy:
+├─ Place halfway between hub and problem lock
+├─ Use always-powered devices (smart plugs)
+├─ Target: Every lock has 2+ route options
+└─ Overkill is better than underkill for critical locks
+```
+
+---
+
+### Optimizing Pairing for Battery Life
+
+**Battery-conscious pairing strategy:**
+
+```
+Standard pairing (most people):
+├─ Pair lock wherever convenient
+├─ Accept whatever signal strength results
+├─ Battery life: 8-12 months (Zigbee/Z-Wave)
+└─ Acceptable for most use cases
+
+Optimized pairing (power users):
+├─ Measure RSSI before final lock placement
+├─ Add routers BEFORE pairing if needed
+├─ Pair only when RSSI >-65 dBm
+├─ Battery life: 12-18 months
+└─ Worth it for hard-to-access locks
+
+Why it matters:
+├─ Poor signal → lock retransmits messages
+├─ Retransmits consume 2-3× power
+├─ Compounds over months
+└─ 50% battery life difference possible
+
+Measurement procedure:
+├─ Install lock (don't pair yet)
+├─ Place phone at lock location
+├─ Use WiFi analyzer app (for WiFi locks)
+├─ OR: Temporarily pair basic Zigbee sensor at location
+├─ Measure RSSI for 5 minutes
+├─ If <-70 dBm: Add router first
+└─ Then pair lock for best battery life
+```
+
+---
+
+## Troubleshooting Decision Tree
+
+**Systematic pairing troubleshooting:**
+
+```
+Pairing fails?
+│
+├─ Lock powers on?
+│   ├─ NO → Replace batteries (fresh, not rechargeable)
+│   └─ YES → Continue
+│
+├─ Hub sees lock during discovery?
+│   ├─ NO → Signal/range issue
+│   │   ├─ Move closer (10-15 feet)
+│   │   ├─ Check interference (turn off 2.4GHz devices)
+│   │   └─ Try different time of day
+│   │
+│   └─ YES → Continue
+│
+├─ Pairing starts but fails mid-process?
+│   ├─ WiFi lock → Check WiFi password, 2.4GHz enabled
+│   ├─ Z-Wave lock → Check DSK entry, try S2 Authenticated instead
+│   ├─ Zigbee lock → Check install code, try without security
+│   └─ Matter lock → Check Border Router, update platform app
+│
+├─ Pairing completes but lock unresponsive?
+│   ├─ Check RSSI (add routers if <-70 dBm)
+│   ├─ Update hub firmware
+│   ├─ Factory reset lock and re-pair
+│   └─ Check device handler/driver compatibility
+│
+└─ Pairing succeeds but no security (Z-Wave)?
+    ├─ Exclude lock
+    ├─ Re-include with S2 Access Control
+    └─ DO NOT USE without encryption
+```
+
+---
+
+## Summary: Pairing Success Checklist
+
+**Maximize pairing success rate (95%+):**
+
+**Before pairing:**
+- [ ] Fresh batteries installed (<1 week old)
+- [ ] Lock powers on and operates manually
+- [ ] Hub/router within 30 feet of lock location
+- [ ] Documentation ready (QR code, DSK, manual)
+- [ ] App/hub firmware updated to latest
+- [ ] Interference minimized (other devices off)
+
+**During pairing:**
+- [ ] Follow manufacturer procedure exactly
+- [ ] Don't skip security steps (DSK, QR code)
+- [ ] Allow full time for pairing (don't rush)
+- [ ] Verify each step completes before proceeding
+- [ ] Note any error messages for troubleshooting
+
+**After pairing:**
+- [ ] Test lock/unlock 3 times minimum
+- [ ] Check RSSI signal strength (target: >-70 dBm)
+- [ ] Verify security enabled (S2, encryption)
+- [ ] Assign to correct room/zone in app
+- [ ] Document in asset tracking system
+- [ ] Monitor for 48 hours for stability
+
+**If pairing fails:**
+- [ ] Factory reset lock completely
+- [ ] Remove from hub (exclude if Z-Wave)
+- [ ] Wait 5 minutes before retry
+- [ ] Try at different time of day
+- [ ] Contact manufacturer support if 3+ failures
+
+**Bottom line:** 90% of pairing issues are interference, low battery, or skipping steps. Systematic preparation and following exact procedures yields 95%+ first-attempt success rate. For large deployments, assembly-line workflow reduces per-lock pairing time from 15 minutes to 5 minutes while maintaining quality.

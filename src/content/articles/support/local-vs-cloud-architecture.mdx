@@ -25,8 +25,8 @@ relatedTools:
   - "protocol-selection-wizard"
 relatedArticles:
   - "smart-lock-protocols-overview"
-  - "smart-lock-security-analysis"
-  - "zigbee-vs-zwave-locks"
+  - "smart-lock-security-complete-analysis"
+  - "zigbee-vs-zwave-comparison"
 featured: true
 ---
 
@@ -154,8 +154,7 @@ The data validates user experiences: local hub architectures deliver 2-5× faste
 
 **Real-world scenario:**
 
-```text
-Internet goes down (ISP maintenance):
+```Internet goes down (ISP maintenance):
 
 Local hub system:
 ✅ Automations still run (arrive home → unlock)
@@ -170,8 +169,7 @@ Cloud system:
 ❌ Automations stop working
 ✅ Physical keypad still works (if equipped)
 ✅ Physical key works
-```text
-
+```
 **Winner:** Local hub (maintains functionality during outages)
 
 ### Privacy and Data Control
@@ -260,52 +258,40 @@ Cloud system:
 **Local hub setup:**
 
 **Initial costs:**
-```text
-Hub (Zigbee/Z-Wave):        $60-150
+```Hub (Zigbee/Z-Wave):        $60-150
 Lock (Zigbee/Z-Wave):       $180-250
 Total:                      $240-400
-```text
-
+```
 **Ongoing costs:**
-```text
-Electricity (hub):          $2-5/year
+```Electricity (hub):          $2-5/year
 Batteries (lock):           $15/year
 Internet (required):        $0 (you already have it)
 Subscription:               $0 (most local hubs free)
 Total annual:               $17-20/year
-```text
-
+```
 **5-year TCO:**
-```text
-Initial: $300 (average)
+```Initial: $300 (average)
 5 years ongoing: $90
 Total: $390
-```text
-
+```
 **Cloud system setup:**
 
 **Initial costs:**
-```text
-WiFi Lock:                  $200-280
+```WiFi Lock:                  $200-280
 Hub (if needed):            $0-60
 Total:                      $200-340
-```text
-
+```
 **Ongoing costs:**
-```text
-Batteries (WiFi lock):      $30/year (3-4 month life)
+```Batteries (WiFi lock):      $30/year (3-4 month life)
 Internet (required):        $0
 Subscription (optional):    $0-100/year (advanced features)
 Total annual:               $30-130/year
-```text
-
+```
 **5-year TCO:**
-```text
-Initial: $240 (average)
+```Initial: $240 (average)
 5 years ongoing: $150-650
 Total: $390-890
-```text
-
+```
 **Winner:** Local hub (lower long-term cost, especially if subscription required)
 
 **Note:** Many cloud locks now require subscriptions for features like:
@@ -336,8 +322,7 @@ Total: $390-890
 ### Scenario 1: Internet Outage (ISP Down)
 
 **Local hub system:**
-```text
-✅ Local control works (phone on WiFi)
+```✅ Local control works (phone on WiFi)
 ✅ Automation works (geofencing if using local presence detection)
 ✅ Voice control works (if hub has offline voice, rare)
 ❌ Remote access fails (cannot control from work)
@@ -345,11 +330,9 @@ Total: $390-890
 
 Impact: Minor inconvenience
 Workaround: Physical key, keypad, or wait for internet
-```text
-
+```
 **Cloud system:**
-```text
-❌ App shows "Offline"
+```❌ App shows "Offline"
 ❌ All automation stops
 ❌ Voice control fails
 ❌ Remote AND local control fails
@@ -358,8 +341,7 @@ Workaround: Physical key, keypad, or wait for internet
 
 Impact: Major inconvenience (lose all smart features)
 Workaround: Physical key/keypad only
-```text
-
+```
 **Real-world impact:** If internet down for 24+ hours (storm, ISP issue):
 - Local: Mild inconvenience  - 90% functionality
 - Cloud: Major problem  - 0% smart functionality
@@ -367,8 +349,7 @@ Workaround: Physical key/keypad only
 ### Scenario 2: Hub Failure
 
 **Local hub system:**
-```text
-❌ All smart lock features stop
+```❌ All smart lock features stop
 ❌ Automation stops
 ✅ Physical key works
 ✅ Keypad works (if equipped, depending on model)
@@ -376,76 +357,61 @@ Workaround: Physical key/keypad only
 Impact: Similar to cloud outage
 Workaround: Restart hub, use physical access
 Recovery: 2-5 minutes (hub restart)
-```text
-
+```
 **Cloud system (if no hub needed):**
-```text
-N/A - Lock directly connects to WiFi
+```N/A - Lock directly connects to WiFi
 No hub to fail
-```text
-
+```
 **Cloud system (if hub present):**
-```text
-Same as local hub failure
-```text
-
+```Same as local hub failure
+```
 **Note:** Hub failure is rare (<<1% annual probability for quality hubs)
 
 ### Scenario 3: Power Outage
 
 **Local hub with UPS (Uninterruptible Power Supply):**
-```text
-✅ Hub continues running on battery (2-8 hours)
+```✅ Hub continues running on battery (2-8 hours)
 ✅ Lock continues working (has own batteries)
 ✅ Local control works
 ⚠️ Internet router may also be down (unless on same UPS)
 
 Impact: Minimal (UPS provides buffer)
 Cost: UPS $50-150
-```text
-
+```
 **Local hub without UPS:**
-```text
-❌ Hub offline (no power)
+```❌ Hub offline (no power)
 ❌ All smart features stop
 ✅ Physical key/keypad works
 
 Impact: Same as hub failure
-```text
-
+```
 **Cloud system:**
-```text
-⚠️ If WiFi router down: Lock offline (depends on router UPS)
+```⚠️ If WiFi router down: Lock offline (depends on router UPS)
 ✅ If router on UPS: Lock may continue (if internet restored)
 
 Impact: Depends on infrastructure
-```text
-
+```
 **Winner:** Local hub + UPS (most resilient)
 
 ### Scenario 4: Manufacturer Goes Out of Business
 
 **Local hub system:**
-```text
-✅ Lock continues working indefinitely
+```✅ Lock continues working indefinitely
 ✅ All local features preserved
 ❌ No firmware updates (potential security risk)
 ❌ No cloud integrations (if you used them)
 
 Impact: Minimal (lock remains functional)
 Long-term: May want to replace for security updates
-```text
-
+```
 **Cloud system:**
-```text
-❌ When servers shut down, lock becomes "dumb"
+```❌ When servers shut down, lock becomes "dumb"
 ❌ Lose all smart features
 ❌ Can't add/remove user codes remotely
 ✅ Physical key/keypad may still work
 
 Impact: Severe (lose investment, need new lock)
-```text
-
+```
 **Historical examples:**
 - **Revolv hub  - 2016:** Google shut down servers, bricked all devices
 - **Wink hub  - 2020:** Required paid subscription or lose service
@@ -659,8 +625,7 @@ Example: Home Assistant + Nabu Casa (cloud service) equals Local control + easy 
 ### Reliability Test
 
 **Test 1: Internet outage simulation**
-```text
-1. Unplug router
+```1. Unplug router
 2. Try to unlock via app (local WiFi)
 3. Try automation (geofencing)
 4. Wait 5 minutes, test again
@@ -668,29 +633,24 @@ Example: Home Assistant + Nabu Casa (cloud service) equals Local control + easy 
 Expected:
 - Local: Should work  - if on WiFi
 - Cloud: Should fail
-```text
-
+```
 **Test 2: Hub restart**
-```text
-1. Restart hub (or unplug/replug)
+```1. Restart hub (or unplug/replug)
 2. Time how long until lock reconnects
 3. Test lock operation
 
 Expected:
 - Hub should reconnect in 1-3 minutes
 - Lock should auto-reconnect
-```text
-
+```
 **Test 3: Latency measurement**
-```text
-1. Use stopwatch
+```1. Use stopwatch
 2. Press unlock in app
 3. Measure time until lock responds
 4. Repeat 10 times, calculate average
 
 Good latency: <1 second (local), <2 seconds (cloud)
-```text
-
+```
 Use our [Offline Resilience Scorecard](/tools/offline-resilience-scorecard) to evaluate your system.
 
 ## Related Resources
@@ -702,8 +662,8 @@ Use our [Offline Resilience Scorecard](/tools/offline-resilience-scorecard) to e
 
 ### Deep Dive Articles
 - [Smart Lock Protocols Overview] - /protocols/smart-lock-protocols-overview - Protocol comparison
-- [Smart Lock Security Analysis] - /security/smart-lock-security-analysis - Security deep dive
-- [Zigbee vs Z-Wave Comparison] - /protocols/zigbee-vs-zwave-locks - Local protocol choice
+- [Smart Lock Security Analysis] - /security/smart-lock-security-complete-analysis - Security deep dive
+- [Zigbee vs Z-Wave Comparison] - /protocols/zigbee-vs-zwave-comparison - Local protocol choice
 
 ### Support Guides
 - [Smart Lock Offline After Internet Outage] - /support/smart-lock-offline-after-outage - Troubleshooting

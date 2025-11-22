@@ -43,13 +43,11 @@ featured: false
 **Magnetic field strength decay**: Magnetic field strength follows inverse-square law approximation: B ∝ 1/d² where B = field strength, d = distance. Practical implication: doubling distance (6mm to 12mm) reduces field strength ~4×, halving detection reliability. Reed switches require minimum 10-20 gauss activation threshold, explaining typical 12mm maximum reliable detection distance where magnet field decays below threshold. This geometric sensitivity makes alignment critical: 2mm lateral misalignment at 10mm distance can reduce effective field strength 30-40% potentially dropping below activation threshold.
 
 **Accelerometer (some locks):**
-```text
-- Detects door movement
+```- Detects door movement
 - No separate magnet needed
 - Less accurate than magnetic
 - Can false-trigger from vibration
-```text
-
+```
 ## Common Causes & Solutions
 
 ### 1. Magnet Misaligned (50%)
@@ -61,8 +59,7 @@ featured: false
 - Seasonal  - door warps with weather
 
 **Fix - Magnetic sensors:**
-```text
-- Locate alignment marks:
+```- Locate alignment marks:
   - August: White line on lock face
   - Others: Small indicator or instruction
 
@@ -86,8 +83,7 @@ featured: false
 - Mark optimal position:
   - Pencil mark on frame
   - Reference for future
-```text
-
+```
 **Expected result:** Consistent detection
 
 ### 2. Gap Too Large (30%)
@@ -105,8 +101,7 @@ featured: false
 - Hinges worn/loose
 
 **Fix:**
-```text
-- Measure gap:
+```- Measure gap:
   - Use feeler gauge or paper
   - Should be <1/2 inch for reliable detection
   - Closer = Better (1/4 inch ideal)
@@ -129,8 +124,7 @@ featured: false
     - Replace with neodymium magnet
     - Increased sensing range
     - $5-10 online
-```text
-
+```
 ### 3. Weak or Missing Magnet (15%)
 
 **Symptoms:**
@@ -140,8 +134,7 @@ featured: false
 - Lock works fine otherwise
 
 **Fix:**
-```text
-- Test magnet strength:
+```- Test magnet strength:
   - Hold near paperclip/screw
   - Should attract strongly
   - If weak: Replace
@@ -159,8 +152,7 @@ featured: false
   - Some magnets directional
   - Try flipping if does not work
   - Should attract to sensor strongly
-```text
-
+```
 ### 4. Sensor Dirty/Damaged (3%)
 
 **Symptoms:**
@@ -169,8 +161,7 @@ featured: false
 - Lock older  - 2+ years
 
 **Fix:**
-```text
-- Clean sensor area:
+```- Clean sensor area:
   - Cotton swab + isopropyl alcohol
   - Wipe sensor surface
   - Remove dust/debris
@@ -184,13 +175,11 @@ featured: false
 - Test after cleaning:
   - Multiple open/close cycles
   - Should improve if dirt was issue
-```text
-
+```
 ## Testing Procedure
 
 **Systematic test:**
-```text
-- Test 1: Manual close
+```- Test 1: Manual close
   - Close door slowly
   - Watch app for status change
   - Changes to "Closed"? ✓
@@ -215,13 +204,11 @@ featured: false
   - Close door, wait 5 minutes
   - Status still correct?
   - Verifies no drift/false detection
-```text
-
+```
 ## Brand-Specific Notes
 
 **August Smart Lock (DoorSense):**
-```text
-- White alignment line on lock face
+```- White alignment line on lock face
 - Magnet must align with line
 - Very sensitive to position
 - Included magnet adhesive-backed
@@ -233,38 +220,30 @@ Setup:
 3. Magnet aligns with white line
 4. Stick magnet to frame at that spot
 5. Test 10 times before finalizing
-```text
-
+```
 **Yale Assure Lock:**
-```text
-- Not all models have door sensor
+```- Not all models have door sensor
 - If equipped: Magnetic sensor
 - Less sensitive than August
 - Wider tolerance  - up to 3/4 inch
-```text
-
+```
 **Schlage Encode:**
-```text
-- Built-in sensor  - no magnet
+```- Built-in sensor  - no magnet
 - Uses accelerometer
 - May false-trigger from vibration
 - Less accurate than magnetic
 - Can't be "aligned"  - inherent design
-```text
-
+```
 **Wyze Lock:**
-```text
-- Optional door sensor
+```- Optional door sensor
 - Separate magnet required
 - Similar to August
 - Alignment critical
-```text
-
+```
 ## Disable Door Sensor
 
 **If unreliable and cannot fix:**
-```text
-Pros of disabling:
+```Pros of disabling:
 ✓ Stops false "door open" alerts
 ✓ Still lock/unlock works
 ✓ No functionality lost (just status)
@@ -284,12 +263,10 @@ When to disable:
 - Sensor unreliable despite fixes
 - Causing false alerts
 - Temporarily while troubleshooting
-```text
-
+```
 ## Prevention
 
-```text
-- Test during installation
+```- Test during installation
   - Don't finalize install until sensor works
   - Test 20+ times before done
 
@@ -309,13 +286,11 @@ When to disable:
 - Weatherproof outdoor
   - Moisture can affect magnetic sensor
   - Seal magnet to prevent water entry
-```text
-
+```
 ## Alternative Solutions
 
 **If door sensor not available/working:**
-```text
-- Use lock status only
+```- Use lock status only
   - Lock knows if deadbolt extended
   - Not same as "door closed" but helpful
 
@@ -329,8 +304,7 @@ When to disable:
   - Smart camera aimed at door
   - Visual verification
   - More expensive but adds security
-```text
-
+```
 ## Related Resources
 
 **Installation:**
