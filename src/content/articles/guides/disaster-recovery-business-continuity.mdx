@@ -60,7 +60,8 @@ This comprehensive disaster recovery guide addresses business impact analysis me
 
 **Industry-Specific Impact**:
 
-```Healthcare Facility - 200-bed hospital:
+```
+Healthcare Facility - 200-bed hospital:
 - Patient access delays: Critical
 - Emergency access required: Life-safety priority
 - Regulatory implications: HIPAA, Joint Commission
@@ -104,7 +105,8 @@ Office Building (Standard Business):
 
 **RTO/RPO Calculation Example**:
 
-```Business Requirements:
+```
+Business Requirements:
 - 500 employees arriving 8-9am  - peak
 - Average 2 minutes per person entry if manual override
 - 500 × 2 min = 1,000 minutes = 16.7 hours of cumulative delay
@@ -180,7 +182,8 @@ Impact Score = Users Affected × Hourly Cost × MTD + Regulatory Penalty Risk
 
 **Critical Single Points of Failure**:
 
-```Identified SPOFs - Risk Priority:
+```
+Identified SPOFs - Risk Priority:
 
 1. Network Switch (#84 RPN):
    - Current: Single switch serving all 50 locks
@@ -214,7 +217,8 @@ ROI: Single 24-hour outage avoided ($400K) pays for all mitigations 12×
 
 **N+1 Configuration - Most Common:**
 
-```Active System + 1 Spare
+```
+Active System + 1 Spare
 
 Architecture:
 ┌─────────────────────────────────────────────────┐
@@ -246,7 +250,8 @@ Failure Scenarios:
 
 **2N Configuration - Active-Active:**
 
-```Two Independent Systems
+```
+Two Independent Systems
 
 Architecture:
 ┌─────────────────────────────────────────────────┐
@@ -278,7 +283,8 @@ Failure Scenarios:
 
 **2N+1 Configuration - Maximum Resilience:**
 
-```Two Active + One Standby
+```
+Two Active + One Standby
 
 Architecture:
 ┌───────────────┐    ┌───────────────┐
@@ -311,7 +317,8 @@ Failure Scenarios:
 
 **Uptime Calculation**:
 
-```Single Component Availability: 99% - Unreliable
+```
+Single Component Availability: 99% - Unreliable
 Annual Downtime: 8,760 hours × 1% = 87.6 hours = 3.65 days
 
 Dual Component (Independent Failures):
@@ -334,7 +341,8 @@ Annual Downtime: 8,760 × 0.0001% = 5.26 minutes
 
 **Cost-Benefit Analysis**:
 
-```100-Lock Deployment Cost Example:
+```
+100-Lock Deployment Cost Example:
 
 Tier 2 (99.9%):
 - Infrastructure: $150,000
@@ -362,7 +370,8 @@ Decision: Tier 3 justified for mission-critical access
 ### Scenario 1: Complete Hub Failure
 
 **Incident Detection**:
-```Monitoring Alert:
+```
+Monitoring Alert:
 ├─ Hub Health Check: FAIL (no response)
 ├─ Lock Connectivity: 0/50 locks responding
 ├─ User Reports: "Cannot unlock doors via app"
@@ -378,7 +387,8 @@ Automated Response (First 30 Seconds):
 
 **Manual Response Procedure**:
 
-```Step 1: Confirm Outage Scope (2 minutes)
+```
+Step 1: Confirm Outage Scope (2 minutes)
 ├─ Check primary hub status dashboard
 ├─ Verify network connectivity to hub
 ├─ Confirm power status (if on-premise)
@@ -429,7 +439,8 @@ Step 5: Service Restoration
 
 **Recovery Procedures**:
 
-```Internet Outage (Cloud Access Lost):
+```
+Internet Outage (Cloud Access Lost):
 ├─ Severity: LOW  - most systems continue functioning
 ├─ Local hub systems: Operate normally (Zigbee/Z-Wave unaffected)
 ├─ WiFi locks with local control: Continue functioning
@@ -469,7 +480,8 @@ Complete Network Failure (Campus-Wide):
 
 **Lock Behavior During Power Loss**:
 
-```Battery-Powered Locks (Zigbee/Z-Wave/WiFi):
+```
+Battery-Powered Locks (Zigbee/Z-Wave/WiFi):
 ├─ Lock Operation: Unaffected (battery-powered)
 ├─ Hub Offline: If hub loses power
 ├─ Network Impact: Depends on router/switch UPS
@@ -490,7 +502,8 @@ Hub/Controller Systems:
 
 **Power Failure Response**:
 
-```Phase 1: Immediate Response (0-15 minutes)
+```
+Phase 1: Immediate Response (0-15 minutes)
 ├─ Verify scope: Building vs campus vs regional
 ├─ Check UPS status: Time remaining
 ├─ Test generator activation (if installed)
@@ -522,7 +535,8 @@ Phase 3: Extended Outage (>4 hours)
 
 **Critical Data Elements**:
 
-```Mandatory Backups (RPO: 15 minutes):
+```
+Mandatory Backups (RPO: 15 minutes):
 ├─ Lock configurations (names, locations, settings)
 ├─ User credentials database (access codes, schedules)
 ├─ Access control policies (who can access what, when)
@@ -555,7 +569,8 @@ Optional Backups (RPO: 24 hours):
 
 **Scenario: Restore from Backup After Complete Data Loss**
 
-```Recovery Time Objective: 4 hours
+```
+Recovery Time Objective: 4 hours
 Recovery Point Objective: 15 minutes
 
 Step 1: Infrastructure Preparation (30 minutes)
@@ -619,7 +634,8 @@ Data Loss: 15 minutes maximum (RPO achieved)
 
 **Test Schedule**:
 
-```Q1 Test: Planned Hub Failover
+```
+Q1 Test: Planned Hub Failover
 ├─ Date: First Saturday of quarter, 6am (low usage)
 ├─ Scope: Primary to secondary hub switchover
 ├─ Duration: 2 hours allocated
@@ -667,7 +683,8 @@ Q4 Test: Tabletop Exercise
 
 After any outage (planned test or unplanned incident):
 
-```1. Incident Timeline Documentation (Within 24 hours)
+```
+1. Incident Timeline Documentation (Within 24 hours)
 ├─ Incident start time
 ├─ Detection time and method
 ├─ Response actions taken (with timestamps)
@@ -718,7 +735,8 @@ After any outage (planned test or unplanned incident):
 
 **Business Continuity Management System (BCMS) Requirements**:
 
-```ISO 22301 Clause Mapping to Smart Lock DR/BC:
+```
+ISO 22301 Clause Mapping to Smart Lock DR/BC:
 
 Clause 4: Context of the Organization
 └─ Requirement: Understand business needs, stakeholders

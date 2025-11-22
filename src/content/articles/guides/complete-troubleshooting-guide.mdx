@@ -80,7 +80,8 @@ Use this table to quickly identify your issue and jump to the solution:
 
 **Quick Fix Decision Tree**:
 
-```START: App cannot connect to lock
+```
+START: App cannot connect to lock
 
 Q1: Does keypad still work?
 ├─ YES → Lock is powered, issue is connectivity
@@ -95,9 +96,11 @@ Q2: Is lock WiFi-enabled?
 │
 └─ NO (BLE/Z-Wave/Zigbee) → Go to Hub troubleshooting
           Common: Yale Assure (no WiFi), Schlage Connect
+```
 
----WiFi Lock Troubleshooting---
+**WiFi Lock Troubleshooting:**
 
+```
 Step 1: Check phone's BLE/WiFi
 ├─ Phone → Settings → Bluetooth: ON?
 ├─ Phone → Settings → WiFi: ON and connected?
@@ -128,9 +131,11 @@ Step 5: Re-pair lock to WiFi
 ├─ Lock → Physical reset button (hold 10 seconds)
 ├─ App → Add Device → Follow pairing wizard
 └─ Success rate: 90% cumulative
+```
 
----Hub-Based Lock Troubleshooting---
+**Hub-Based Lock Troubleshooting:**
 
+```
 Step 1: Check hub power/status
 ├─ Hub LED indicator: Solid green equals good, red/off equals problem
 ├─ Hub power adapter: Plugged in? Outlet working?
@@ -154,7 +159,8 @@ Step 4: Re-pair lock to hub
 ├─ Lock should appear within 60 seconds
 └─ Success rate: 95% cumulative
 ```
-**Still Not Working? Advanced Steps**:
+
+**Still Not Working - Advanced Steps:**
 
 1. **Check router firewall**:
    - Some routers block smart home device communication
@@ -202,7 +208,8 @@ Step 4: Re-pair lock to hub
 
 **Solution - Door Alignment Check**:
 
-```Step-by-Step Alignment Fix:
+```
+Step-by-Step Alignment Fix:
 
 1. Identify the problem
    ├─ Close door (don't lock yet)
@@ -341,7 +348,8 @@ Success Rate by Step:
 
 **Quick Fix**:
 
-```Step 1: Verify you're entering code correctly
+```
+Step 1: Verify you're entering code correctly
 ├─ Enter code slowly (1 second between digits)
 ├─ Press checkmark/enter button after last digit
 ├─ Don't press lock/unlock button - just the code + enter
@@ -421,7 +429,8 @@ Step 4: Factory reset codes (last resort)
 
 **Recovery Steps**:
 
-```Step 1: Power cycle the lock
+```
+Step 1: Power cycle the lock
 ├─ Remove batteries completely
 ├─ Press any button 5 times (discharges capacitors)
 ├─ Wait 60 seconds minimum
@@ -474,7 +483,8 @@ Step 4: Contact manufacturer support
 
 **Solution Steps**:
 
-```1. Check auto-lock timer
+```
+1. Check auto-lock timer
    ├─ App → Settings → Auto-Lock
    ├─ If enabled: Note timer value
    ├─ Disable auto-lock completely
@@ -550,7 +560,8 @@ Step 4: Contact manufacturer support
 
 **Diagnosis**:
 
-```Step 1: Visual inspection
+```
+Step 1: Visual inspection
 ├─ Check for physical damage (cracks, water damage)
 ├─ Look for debris between buttons
 ├─ Check if buttons stick when pressed
@@ -593,7 +604,8 @@ Step 4: Replace keypad module
 **Quick Fixes by Platform**:
 
 **Amazon Alexa**:
-```1. Disable and re-enable skill
+```
+1. Disable and re-enable skill
    ├─ Alexa app → Skills → Your lock brand skill
    ├─ Disable skill
    ├─ Wait 30 seconds
@@ -612,7 +624,8 @@ Step 4: Replace keypad module
 ```
 
 **Google Home**:
-```1. Unlink and relink service
+```
+1. Unlink and relink service
    ├─ Google Home app → Settings
    ├─ Works with Google → Your lock brand
    ├─ Unlink account
@@ -626,7 +639,8 @@ Step 4: Replace keypad module
 ```
 
 **Apple HomeKit**:
-```1. Remove and re-add accessory
+```
+1. Remove and re-add accessory
    ├─ Home app → Hold lock tile
    ├─ Settings → Remove Accessory
    ├─ Scan setup code again
@@ -652,7 +666,8 @@ Step 4: Replace keypad module
 
 **Debugging Steps**:
 
-```1. Check automation conditions
+```
+1. Check automation conditions
    ├─ App → Automation → Your rule
    ├─ Verify:
    │   ├─ Time is correct (not AM/PM reversed)
@@ -688,7 +703,8 @@ Step 4: Replace keypad module
 
 **WARNING**: This deletes everything - codes, settings, pairings
 
-```Complete Reset Procedure:
+```
+Complete Reset Procedure:
 
 1. Document current state
    ├─ Screenshot all user codes
