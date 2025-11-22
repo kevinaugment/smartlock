@@ -1,0 +1,40 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import EmergencyBackupEvaluatorCalculator from '@/components/calculators/EmergencyBackupEvaluator';
+---
+
+<BaseLayout
+  title="Emergency Backup Evaluator"
+  description="Evaluate how well your smart lock setup can recover from lockouts when batteries, phones, or the internet fail."
+>
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="mb-8">
+      <nav class="mb-4 text-sm text-gray-600">
+        <a href="/" class="hover:text-gray-900">Home</a>
+        <span class="mx-2">/</span>
+        <a href="/tools" class="hover:text-gray-900">Tools</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-900">Emergency Backup Evaluator</span>
+      </nav>
+
+      <h1 class="text-4xl font-bold text-gray-900">
+        Emergency Backup Evaluator
+      </h1>
+      <p class="mt-4 text-xl text-gray-600">
+        Score your contingency plan for dead batteries, lost phones, and
+        unreachable hosts, and get suggestions to reduce lockout risk.
+      </p>
+    </div>
+
+    <EmergencyBackupEvaluatorCalculator client:load />
+
+    <div class="mt-16 rounded-lg border border-gray-200 bg-gray-50 p-8">
+      <h2 class="text-2xl font-bold text-gray-900">What this evaluator considers</h2>
+      <div class="mt-6 space-y-2 text-gray-700 text-sm">
+        <p>• Availability of physical keys, keypads, lockboxes, and staff help</p>
+        <p>• Low-battery alert practices and auto-lock behavior</p>
+        <p>• Typical emergency response time and guest phone reliability</p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

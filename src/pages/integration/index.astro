@@ -1,0 +1,280 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const articles = await getCollection('articles', ({ data }) => {
+  return data.category === 'integration';
+});
+
+// Sort by date (newest first)
+const sortedArticles = articles.sort((a, b) => {
+  return b.data.pubDate.getTime() - a.data.pubDate.getTime();
+});
+
+// Separate pillar articles
+const pillarArticles = sortedArticles.filter((a) => a.data.isPillar);
+const regularArticles = sortedArticles.filter((a) => !a.data.isPillar);
+---
+
+<BaseLayout
+  title="Smart Lock Integrations"
+  description="Enterprise integration guides for smart locks with building automation, access control, visitor management, and calendar systems"
+>
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <!-- Page Header -->
+    <div class="mb-12">
+      <h1 class="text-4xl font-bold text-gray-900">
+        Enterprise Integrations
+      </h1>
+      <p class="mt-4 text-xl text-gray-600">
+        Complete integration guides for connecting smart locks with enterprise systems:
+        building automation, access control platforms, visitor management, meeting room booking,
+        and calendar systems
+      </p>
+    </div>
+
+    <!-- Pillar Articles -->
+    {
+      pillarArticles.length > 0 && (
+        <div class="mb-16">
+          <h2 class="mb-6 text-2xl font-bold text-gray-900">
+            Complete Integration Guides
+          </h2>
+          <div class="grid gap-6 md:grid-cols-2">
+            {pillarArticles.map((article) => (
+              <a
+                href={`/integration/${article.slug.replace('integration/', '')}`}
+                class="group block rounded-lg border-2 border-primary-200 bg-white p-6 hover:border-primary-400 hover:shadow-lg"
+              >
+                <div class="mb-2 text-sm font-semibold uppercase text-primary-600">
+                  Pillar Article
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 group-hover:text-primary-600">
+                  {article.data.title}
+                </h3>
+                <p class="mt-2 text-gray-600">{article.data.description}</p>
+                <div class="mt-4 flex items-center text-sm text-gray-500">
+                  <span>{article.data.readingTime} min read</span>
+                  <span class="mx-2">•</span>
+                  <span>{article.data.wordCount} words</span>
+                </div>
+                {article.data.tags && (
+                  <div class="mt-4 flex flex-wrap gap-2">
+                    {article.data.tags.slice(0, 3).map((tag) => (
+                      <span class="rounded-full bg-blue-100 px-2 py-1 text-xs text-blue-800">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </a>
+            ))}
+          </div>
+        </div>
+      )
+    }
+
+    <!-- Regular Articles -->
+    {
+      regularArticles.length > 0 && (
+        <div>
+          <h2 class="mb-6 text-2xl font-bold text-gray-900">
+            System-Specific Integrations
+          </h2>
+          <div class="grid gap-6 md:grid-cols-2">
+            {regularArticles.map((article) => (
+              <a
+                href={`/integration/${article.slug.replace('integration/', '')}`}
+                class="group block rounded-lg border border-gray-200 bg-white p-6 hover:border-primary-300 hover:shadow-lg transition-all"
+              >
+                <h3 class="text-lg font-bold text-gray-900 group-hover:text-primary-600">
+                  {article.data.title}
+                </h3>
+                <p class="mt-2 text-sm text-gray-600">{article.data.description}</p>
+                <div class="mt-4 flex items-center text-xs text-gray-500">
+                  <time datetime={article.data.pubDate.toISOString()}>
+                    {new Date(article.data.pubDate).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
+                  </time>
+                  <span class="mx-2">•</span>
+                  <span>{article.data.readingTime} min read</span>
+                </div>
+                {article.data.tags && (
+                  <div class="mt-3 flex flex-wrap gap-1">
+                    {article.data.tags.slice(0, 3).map((tag) => (
+                      <span class="rounded-full bg-gray-100 px-2 py-1 text-xs text-gray-700">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </a>
+            ))}
+          </div>
+        </div>
+      )
+    }
+
+    {/* No articles message */}
+    {
+      articles.length === 0 && (
+        <div class="rounded-lg border-2 border-dashed border-gray-300 p-12 text-center">
+          <p class="text-gray-600">No integration guides available yet.</p>
+        </div>
+      )
+    }
+
+    <!-- Integration Categories -->
+    <div class="mt-16 rounded-lg bg-gradient-to-br from-blue-50 to-primary-50 p-8">
+      <h2 class="text-2xl font-bold text-gray-900">Integration Types</h2>
+      <p class="mt-2 text-gray-600">
+        Connect smart locks with your existing enterprise systems
+      </p>
+      <div class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div class="rounded-lg bg-white p-6 shadow-sm">
+          <div class="mb-3 text-3xl">🏢</div>
+          <h3 class="font-bold text-gray-900">Building Automation (BAS)</h3>
+          <p class="mt-2 text-sm text-gray-600">
+            BACnet, Modbus, KNX integration for HVAC, lighting, and facility management systems
+          </p>
+          <ul class="mt-3 space-y-1 text-xs text-gray-600">
+            <li>• Johnson Controls</li>
+            <li>• Honeywell</li>
+            <li>• Siemens</li>
+            <li>• Schneider Electric</li>
+          </ul>
+        </div>
+        <div class="rounded-lg bg-white p-6 shadow-sm">
+          <div class="mb-3 text-3xl">🔐</div>
+          <h3 class="font-bold text-gray-900">Enterprise Access Control</h3>
+          <p class="mt-2 text-sm text-gray-600">
+            Integration with corporate access control and identity management platforms
+          </p>
+          <ul class="mt-3 space-y-1 text-xs text-gray-600">
+            <li>• Active Directory / LDAP</li>
+            <li>• SAML / OAuth SSO</li>
+            <li>• Badge systems</li>
+            <li>• HR systems (Workday)</li>
+          </ul>
+        </div>
+        <div class="rounded-lg bg-white p-6 shadow-sm">
+          <div class="mb-3 text-3xl">👥</div>
+          <h3 class="font-bold text-gray-900">Visitor Management</h3>
+          <p class="mt-2 text-sm text-gray-600">
+            Guest registration, temporary access, and visitor tracking systems
+          </p>
+          <ul class="mt-3 space-y-1 text-xs text-gray-600">
+            <li>• Envoy</li>
+            <li>• Traction Guest</li>
+            <li>• Proxyclick</li>
+            <li>• SwipedOn</li>
+          </ul>
+        </div>
+        <div class="rounded-lg bg-white p-6 shadow-sm">
+          <div class="mb-3 text-3xl">📅</div>
+          <h3 class="font-bold text-gray-900">Meeting Room Booking</h3>
+          <p class="mt-2 text-sm text-gray-600">
+            Calendar-driven access for conference rooms and shared spaces
+          </p>
+          <ul class="mt-3 space-y-1 text-xs text-gray-600">
+            <li>• Microsoft 365 / Exchange</li>
+            <li>• Google Workspace</li>
+            <li>• Robin / Envoy Rooms</li>
+            <li>• OfficeSpace</li>
+          </ul>
+        </div>
+        <div class="rounded-lg bg-white p-6 shadow-sm">
+          <div class="mb-3 text-3xl">🏨</div>
+          <h3 class="font-bold text-gray-900">Property Management (PMS)</h3>
+          <p class="mt-2 text-sm text-gray-600">
+            Hotel and vacation rental management system integration
+          </p>
+          <ul class="mt-3 space-y-1 text-xs text-gray-600">
+            <li>• Opera PMS</li>
+            <li>• Guesty</li>
+            <li>• Hostaway</li>
+            <li>• OwnerRez</li>
+          </ul>
+        </div>
+        <div class="rounded-lg bg-white p-6 shadow-sm">
+          <div class="mb-3 text-3xl">🔧</div>
+          <h3 class="font-bold text-gray-900">APIs & Webhooks</h3>
+          <p class="mt-2 text-sm text-gray-600">
+            Custom integrations via REST APIs, webhooks, and event streams
+          </p>
+          <ul class="mt-3 space-y-1 text-xs text-gray-600">
+            <li>• REST APIs</li>
+            <li>• Webhooks</li>
+            <li>• Event streaming</li>
+            <li>• Custom middleware</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Integration Benefits -->
+    <div class="mt-8 rounded-lg bg-gray-50 p-8">
+      <h2 class="text-2xl font-bold text-gray-900">Integration Benefits</h2>
+      <div class="mt-6 grid gap-6 md:grid-cols-3">
+        <div class="flex gap-3">
+          <div class="text-2xl">⚡</div>
+          <div>
+            <h3 class="font-bold text-gray-900">Automation</h3>
+            <p class="mt-1 text-sm text-gray-600">
+              Automated provisioning and de-provisioning based on calendar events, HR changes, or booking systems
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-3">
+          <div class="text-2xl">📊</div>
+          <div>
+            <h3 class="font-bold text-gray-900">Centralized Monitoring</h3>
+            <p class="mt-1 text-sm text-gray-600">
+              Unified dashboards, audit trails, and analytics across all integrated systems
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-3">
+          <div class="text-2xl">🔒</div>
+          <div>
+            <h3 class="font-bold text-gray-900">Enhanced Security</h3>
+            <p class="mt-1 text-sm text-gray-600">
+              Single source of truth, reduced manual processes, and comprehensive access logs
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Tools -->
+    <div class="mt-8 rounded-lg bg-white border border-gray-200 p-8">
+      <h2 class="text-2xl font-bold text-gray-900">Integration Planning Tools</h2>
+      <p class="mt-2 text-gray-600">
+        Plan and evaluate your integration requirements
+      </p>
+      <div class="mt-6 grid gap-4 md:grid-cols-2">
+        <a
+          href="/tools/smart-home-integration-checker"
+          class="rounded-lg border border-gray-200 bg-gray-50 p-4 hover:border-primary-300 hover:bg-white"
+        >
+          <h3 class="font-bold text-gray-900">Integration Checker</h3>
+          <p class="mt-1 text-sm text-gray-600">
+            Check compatibility with your systems
+          </p>
+        </a>
+        <a
+          href="/tools/credential-capacity-planner"
+          class="rounded-lg border border-gray-200 bg-gray-50 p-4 hover:border-primary-300 hover:bg-white"
+        >
+          <h3 class="font-bold text-gray-900">Credential Planner</h3>
+          <p class="mt-1 text-sm text-gray-600">
+            Plan user and credential capacity
+          </p>
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

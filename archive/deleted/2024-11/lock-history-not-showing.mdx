@@ -1,0 +1,383 @@
+---
+title: "Smart Lock History Not Showing - Fix Access Log Issues"
+description: "Fix missing or incomplete smart lock history logs. Troubleshoot access records, event logging, cloud sync issues, and restore complete lock activity history."
+category: support
+pubDate: 2024-04-02
+wordCount: 700
+readingTime: 4
+keywords:
+  - "history not showing"
+  - "access log missing"
+  - "lock history"
+  - "event log"
+  - "activity history"
+tags:
+  - "history"
+  - "logging"
+  - "troubleshooting"
+isPillar: false
+isSupport: true
+relatedArticles:
+  - "secure-smart-lock-best-practices"
+  - "smart-lock-no-response"
+featured: false
+---
+
+## Quick Answer
+
+**History missing because: lock offline when event occurred (50%), cloud sync delayed (30%), or app storage full (15%).** Fix by: ensuring lock online, forcing sync (lock/unlock once), clearing app cache, checking internet connection, updating app. History only recorded when lock connected - offline events lost. Some locks store locally (recover when reconnected), others don't (lost forever).
+
+**Key limitation:** Most locks only log while online
+**Time delay:** Cloud sync can take 1-5 minutes
+
+## Understanding Lock History
+
+### What Gets Logged
+
+**Typical events:**
+```
+✓ Locked (method: app, keypad, auto, manual)
+✓ Unlocked (method + user if known)
+✓ Code used (which code/user)
+✓ Failed attempts
+✓ Battery level changes
+✓ Tamper alerts
+✓ Offline/online status
+✓ Low battery warnings
+```
+
+### What Doesn't Get Logged
+
+**NOT typically logged:**
+```
+✗ Manual thumb turn operations (some locks)
+✗ Events while offline (unless local storage)
+✗ Failed sync attempts
+✗ Settings changes
+```
+
+## Common Causes & Fixes
+
+### 1. Lock Was Offline (50%)
+
+**Problem:**
+```
+Lock offline → Event happens → Not logged
+- No connection = No cloud recording
+- Event lost forever  - most locks
+- Gap in history
+
+Timeline:
+- 2:00pm: Lock goes offline
+- 2:30pm: Someone unlocks with code
+- 3:00pm: Lock comes back online
+- History: Missing 2:30pm event
+```
+
+**Fix/Prevention:**
+```
+□ Fix connectivity:
+  - See: [Improve Stability Guide]
+  - Add repeater
+  - Strengthen signal
+
+□ Check if lock stores locally:
+  - Premium locks: Local storage (7-30 days)
+  - Budget locks: No storage (lost when offline)
+  - Check manual
+
+□ If local storage:
+  - Reconnect lock
+  - May sync historical events
+  - Wait 10-15 minutes
+```
+
+**Prevention:** Keep lock online
+
+### 2. Cloud Sync Delay (30%)
+
+**Problem:**
+```
+Event happens → Takes 1-5 min to appear in app
+- Normal delay  - not instant
+- User checks too quickly
+- Thinks history missing
+
+Typical delays:
+- Local  - Bluetooth: Instant
+- WiFi: 10-60 seconds
+- Zigbee/Z-Wave: 30-120 seconds
+- Cloud routing: Up to 5 minutes
+```
+
+**Fix:**
+```
+□ Wait 5 minutes:
+  - Most events appear within this time
+  - Don't panic immediately
+
+□ Force sync:
+  - Lock/unlock via app once
+  - Triggers communication
+  - May push pending events
+
+□ Refresh app:
+  - Pull down to refresh
+  - Close and reopen app
+  - Re-login if needed
+```
+
+### 3. App Cache Full (15%)
+
+**Problem:**
+```
+App stores history locally:
+- Cache fills up over time
+- Old events not purged
+- New events can't load
+
+Symptoms:
+- History stops at certain date
+- No new events after X date
+- App slow/laggy
+```
+
+**Fix:**
+```
+□ Clear app cache:
+
+iOS:
+1. Delete app
+2. Reinstall from App Store
+3. Login again
+4. History reloads from cloud
+
+Android:
+1. Settings → Apps → [Lock App]
+2. Storage → Clear Cache (NOT Clear Data)
+3. Reopen app
+4. History reloads
+
+□ Update app:
+  - Old app versions have bugs
+  - Check App Store for updates
+```
+
+### 4. Account/Login Issues (3%)
+
+**Problem:**
+```
+Wrong account logged in:
+- Multiple family members
+- Guest account vs admin
+- Different permissions
+
+History permissions:
+- Admin: See all history
+- User: Limited history
+- Guest: No history
+```
+
+**Fix:**
+```
+□ Verify correct account:
+  - Check email shown in settings
+  - Right account for this lock?
+
+□ Check permissions:
+  - App → Settings → Account type
+  - Admin vs User vs Guest
+
+□ Re-login:
+  - Logout
+  - Login with correct credentials
+  - History may reappear
+```
+
+### 5. History Retention Limits (2%)
+
+**Problem:**
+```
+Lock only stores X days:
+- Budget locks: 7-30 days
+- Premium locks: 90-365 days
+- Cloud storage costs money
+
+After retention period:
+- Old events deleted
+- Only recent history visible
+```
+
+**Check limits:**
+```
+Common retention:
+- August: 30 days free, unlimited with subscription
+- Yale: 30 days
+- Schlage: 30 days
+- Kwikset: 14-30 days
+- WiFi locks: Often limited
+
+Check: App → Settings → Subscription or History
+```
+
+## Platform-Specific Issues
+
+### Cloud-Based Locks (WiFi)
+
+**Issues:**
+- Internet down = No logging
+- Cloud service outage = Gap in history
+- Server maintenance = Temporary loss
+
+**Mitigation:**
+```
+□ Check manufacturer status page
+□ Wait for service restoration
+□ Export important history regularly
+```
+
+### Hub-Based Locks (Zigbee/Z-Wave)
+
+**Issues:**
+- Hub offline = No logging
+- Hub memory full = Limited storage
+- Hub restarted = Lost recent events
+
+**Fix:**
+```
+□ Check hub online
+□ Restart hub
+□ Clear hub cache (if available)
+□ Update hub firmware
+```
+
+### Bluetooth Locks
+
+**Issues:**
+- Phone out of range = No logging
+- Phone battery dead = No logging
+- Very limited range  - 10-30 feet
+
+**Reality:**
+```
+Bluetooth locks:
+- Only log when phone connected
+- Not designed for complete history
+- Consider upgrade if history critical
+```
+
+## Verification
+
+**Test history logging:**
+```
+□ Perform known event:
+  1. Note exact time
+  2. Unlock via app
+  3. Wait 5 minutes
+  4. Check app history
+  5. Event should appear with timestamp
+
+□ If appears:
+  - Logging works
+  - Previous gap was offline period
+
+□ If doesn't appear:
+  - Logging broken
+  - Troubleshoot further
+```
+
+## Export History
+
+**Save history before it's deleted:**
+```
+□ Check if app supports export:
+  - Some apps: Export CSV
+  - Some apps: Export PDF
+  - Some apps: Screenshot only
+
+□ Export methods:
+  - App → History → Export/Share
+  - Email to self
+  - Save to Files/Drive
+
+□ Export frequency:
+  - Monthly recommended
+  - Before retention period ends
+  - For important properties (rentals, etc.)
+```
+
+## Workarounds
+
+**If lock history unreliable:**
+```
+□ Use hub history:
+  - SmartThings, Hubitat logs events
+  - Often more reliable than lock's log
+
+□ Add separate logger:
+  - Home Assistant
+  - Node-RED
+  - Custom automation to database
+
+□ Use camera:
+  - Video doorbell
+  - Visual record of access
+  - More complete than lock history
+
+□ Physical logbook:
+  - Low-tech backup
+  - Guests sign in/out
+  - Airbnb, office use
+```
+
+## When History Critical
+
+**For rentals, business:**
+```
+☑ Choose locks with proven logging
+  - August (reliable history)
+  - Yale (good logging)
+  - Commercial locks (designed for it)
+
+☑ Have backup logging:
+  - Camera + lock
+  - Hub logs + lock logs
+  - Physical sign-in sheet
+
+☑ Export regularly:
+  - Weekly for high-traffic
+  - Monthly for normal use
+  - Before disputes arise
+
+☑ Monitor gaps:
+  - Check history daily
+  - Note offline periods
+  - Address connectivity immediately
+```
+
+## Related Resources
+
+**Connectivity:**
+- [Lock Goes Offline] - /support/smart-lock-keeps-going-offline - Fix connectivity
+- [No Response] - /support/smart-lock-no-response - Connection issues
+
+**Security:**
+- [Security Best Practices] - /support/secure-smart-lock-best-practices - Monitoring
+
+---
+
+## Summary Checklist
+
+**Fix missing history:**
+
+1. ☑️ **Wait 5 minutes** (sync delay normal)
+2. ☑️ **Force sync** (lock/unlock once)
+3. ☑️ **Refresh app** (pull down or restart)
+4. ☑️ **Check lock online** (offline = no logging)
+5. ☑️ **Clear app cache** (free storage)
+6. ☑️ **Update app** (fix bugs)
+7. ☑️ **Export history** (before retention expires)
+
+**Key insight:** Lock must be online to log - offline events lost (most locks)
+
+**Pro tip:** Don't rely solely on lock history for critical security/accountability. Locks can go offline, lose events, or have sync issues. For Airbnb, office, or other high-stakes uses, combine: 1) Smart lock logging, 2) Video doorbell recording, 3) Hub event logging, 4) Physical sign-in sheet. Redundancy ensures you never have gaps when you need to prove who accessed when!

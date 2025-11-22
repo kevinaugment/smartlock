@@ -1,0 +1,41 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import InstallationTimeEstimatorCalculator from '@/components/calculators/InstallationTimeEstimator';
+---
+
+<BaseLayout
+  title="Installation Time Estimator"
+  description="Estimate total technician hours, crew-days, and labor cost for a smart lock installation project."
+>
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="mb-8">
+      <nav class="mb-4 text-sm text-gray-600">
+        <a href="/" class="hover:text-gray-900">Home</a>
+        <span class="mx-2">/</span>
+        <a href="/tools" class="hover:text-gray-900">Tools</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-900">Installation Time Estimator</span>
+      </nav>
+
+      <h1 class="text-4xl font-bold text-gray-900">
+        Installation Time Estimator
+      </h1>
+      <p class="mt-4 text-xl text-gray-600">
+        Model how many technician hours and crew-days are required to install
+        smart locks across your doors, and the approximate labor cost.
+      </p>
+    </div>
+
+    <InstallationTimeEstimatorCalculator client:load />
+
+    <div class="mt-16 rounded-lg border border-gray-200 bg-gray-50 p-8">
+      <h2 class="text-2xl font-bold text-gray-900">What this estimator considers</h2>
+      <div class="mt-6 space-y-2 text-gray-700 text-sm">
+        <p>• Door type (interior, exterior, steel, glass)</p>
+        <p>• Retrofit vs new doors / heavy modification</p>
+        <p>• Need for electrical wiring / conduit</p>
+        <p>• Crew size and effective hourly rate</p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

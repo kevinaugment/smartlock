@@ -1,0 +1,41 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import MultiPropertyFleetPlannerCalculator from '@/components/calculators/MultiPropertyFleetPlanner';
+---
+
+<BaseLayout
+  title="Multi-property Fleet Planner"
+  description="Score fragmentation and plan a unified smart lock fleet across multiple properties and protocols."
+>
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="mb-8">
+      <nav class="mb-4 text-sm text-gray-600">
+        <a href="/" class="hover:text-gray-900">Home</a>
+        <span class="mx-2">/</span>
+        <a href="/tools" class="hover:text-gray-900">Tools</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-900">Multi-property Fleet Planner</span>
+      </nav>
+
+      <h1 class="text-4xl font-bold text-gray-900">
+        Multi-property Fleet Planner
+      </h1>
+      <p class="mt-4 text-xl text-gray-600">
+        Understand how fragmented your current smart lock fleet is and what you
+        gain by standardizing on a single protocol and platform across
+        properties.
+      </p>
+    </div>
+
+    <MultiPropertyFleetPlannerCalculator client:load />
+
+    <div class="mt-16 rounded-lg border border-gray-200 bg-gray-50 p-8">
+      <h2 class="text-2xl font-bold text-gray-900">What this planner estimates</h2>
+      <div class="mt-6 space-y-2 text-gray-700 text-sm">
+        <p>• A simple fragmentation score based on brands and protocols in use</p>
+        <p>• Annual maintenance workload before vs after standardization</p>
+        <p>• One-time vs gradual migration cost envelopes</p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

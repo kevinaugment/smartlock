@@ -1,0 +1,149 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const articles = await getCollection('articles', ({ data }) => {
+  return data.category === 'security';
+});
+
+// Sort by date (newest first)
+const sortedArticles = articles.sort((a, b) => {
+  return b.data.pubDate.getTime() - a.data.pubDate.getTime();
+});
+
+// Separate pillar articles
+const pillarArticles = sortedArticles.filter((a) => a.data.isPillar);
+const regularArticles = sortedArticles.filter((a) => !a.data.isPillar);
+---
+
+<BaseLayout
+  title="Security"
+  description="Smart lock security analysis, threat modeling, encryption mechanisms, and security best practices"
+>
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <!-- Page Header -->
+    <div class="mb-12">
+      <h1 class="text-4xl font-bold text-gray-900">
+        Smart Lock Security
+      </h1>
+      <p class="mt-4 text-xl text-gray-600">
+        Security analysis, threat modeling, encryption mechanisms, and best practices for smart lock deployments
+      </p>
+    </div>
+
+    <!-- Pillar Articles -->
+    {
+      pillarArticles.length > 0 && (
+        <div class="mb-16">
+          <h2 class="mb-6 text-2xl font-bold text-gray-900">
+            Complete Security Guides
+          </h2>
+          <div class="grid gap-6 md:grid-cols-2">
+            {pillarArticles.map((article) => (
+              <a
+                href={`/security/${article.slug.replace('security/', '')}`}
+                class="group block rounded-lg border-2 border-red-200 bg-white p-6 hover:border-red-400 hover:shadow-lg"
+              >
+                <div class="mb-2 text-sm font-semibold uppercase text-red-600">
+                  Pillar Article
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 group-hover:text-red-600">
+                  {article.data.title}
+                </h3>
+                <p class="mt-2 text-gray-600">{article.data.description}</p>
+                <div class="mt-4 flex items-center text-sm text-gray-500">
+                  <span>{article.data.readingTime} min read</span>
+                  <span class="mx-2">•</span>
+                  <span>{article.data.wordCount} words</span>
+                </div>
+                {article.data.tags && (
+                  <div class="mt-4 flex flex-wrap gap-2">
+                    {article.data.tags.slice(0, 3).map((tag) => (
+                      <span class="rounded-full bg-red-100 px-2 py-1 text-xs text-red-800">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </a>
+            ))}
+          </div>
+        </div>
+      )
+    }
+
+    <!-- Regular Articles -->
+    {
+      regularArticles.length > 0 && (
+        <div>
+          <h2 class="mb-6 text-2xl font-bold text-gray-900">
+            Security Analysis & Guides
+          </h2>
+          <div class="space-y-6">
+            {regularArticles.map((article) => (
+              <a
+                href={`/security/${article.slug.replace('security/', '')}`}
+                class="group block rounded-lg border border-gray-200 bg-white p-6 hover:border-red-300 hover:shadow-md"
+              >
+                <h3 class="text-lg font-bold text-gray-900 group-hover:text-red-600">
+                  {article.data.title}
+                </h3>
+                <p class="mt-2 text-gray-600">{article.data.description}</p>
+                <div class="mt-4 flex items-center text-sm text-gray-500">
+                  <time>
+                    {article.data.pubDate.toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
+                  </time>
+                  <span class="mx-2">•</span>
+                  <span>{article.data.readingTime} min read</span>
+                </div>
+                {article.data.tags && (
+                  <div class="mt-4 flex flex-wrap gap-2">
+                    {article.data.tags.slice(0, 4).map((tag) => (
+                      <span class="rounded-full bg-gray-100 px-2 py-1 text-xs text-gray-700">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </a>
+            ))}
+          </div>
+        </div>
+      )
+    }
+
+    <!-- Related Tools -->
+    <div class="mt-16 rounded-lg bg-gradient-to-r from-red-50 to-orange-50 p-8">
+      <h2 class="mb-4 text-2xl font-bold text-gray-900">
+        Security Planning Tools
+      </h2>
+      <p class="mb-6 text-gray-600">
+        Use our interactive tools to assess and improve your deployment security
+      </p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        <a
+          href="/tools/offline-resilience-scorecard"
+          class="rounded-lg bg-white p-4 hover:shadow-md"
+        >
+          <h3 class="font-bold text-gray-900">Offline Resilience Scorecard</h3>
+          <p class="mt-1 text-sm text-gray-600">
+            Evaluate security during outages
+          </p>
+        </a>
+        <a
+          href="/tools/credential-capacity-planner"
+          class="rounded-lg bg-white p-4 hover:shadow-md"
+        >
+          <h3 class="font-bold text-gray-900">Credential Capacity Planner</h3>
+          <p class="mt-1 text-sm text-gray-600">
+            Plan secure credential management
+          </p>
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

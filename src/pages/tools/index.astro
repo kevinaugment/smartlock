@@ -1,0 +1,300 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const tools = [
+  {
+    name: 'TCO Calculator',
+    slug: 'lock-tco-calculator',
+    description: 'Calculate total cost of ownership for smart lock deployments. Compare protocols, battery costs, and hub investments.',
+    complexity: 'Simple',
+    available: true,
+  },
+  {
+    name: 'Protocol Selection Wizard',
+    slug: 'protocol-selection-wizard',
+    description: 'Get personalized protocol recommendation based on your deployment scenario, budget, and priorities.',
+    complexity: 'Moderate',
+    available: true,
+  },
+  {
+    name: 'Battery Life Comparison',
+    slug: 'battery-life-comparison',
+    description: 'Compare battery consumption across protocols and usage patterns. Estimate annual battery costs.',
+    complexity: 'Simple',
+    available: true,
+  },
+  {
+    name: 'Smart Home Integration Checker',
+    slug: 'smart-home-integration-checker',
+    description: 'See which locks integrate natively or via bridge with your existing HomeKit, Google, Alexa, or SmartThings setup.',
+    complexity: 'Moderate',
+    available: true,
+  },
+  {
+    name: 'RF Coverage Estimator',
+    slug: 'rf-coverage-estimator',
+    description: 'Plan mesh network topology. Calculate signal strength and required repeater placement.',
+    complexity: 'Complex',
+    available: true,
+  },
+  {
+    name: 'Multi-property Fleet Planner',
+    slug: 'multi-property-fleet-planner',
+    description: 'Score fragmentation and plan a unified smart lock fleet across many properties.',
+    complexity: 'Moderate',
+    available: true,
+  },
+  {
+    name: 'Mesh Node Planner',
+    slug: 'mesh-node-planner',
+    description: 'Estimate how many mesh repeaters you need and how to distribute them by floor.',
+    complexity: 'Simple',
+    available: true,
+  },
+  {
+    name: 'Door Lock Compatibility Checker',
+    slug: 'door-lock-compatibility-checker',
+    description: 'Check if smart locks fit your door. Verify thickness, backset, hole type compatibility.',
+    complexity: 'Simple',
+    available: true,
+  },
+  {
+    name: 'Short-term Rental Automation Time Savings',
+    slug: 'str-automation-time-savings',
+    description: 'Quantify time saved when automating key handoffs and access codes for your STR portfolio.',
+    complexity: 'Moderate',
+    available: true,
+  },
+  {
+    name: 'Short-term Rental ROI Calculator',
+    slug: 'short-term-rental-roi-calculator',
+    description: 'Quantify labor savings, reduced lockouts, and key losses when adding smart locks to your STR portfolio.',
+    complexity: 'Moderate',
+    available: true,
+  },
+  {
+    name: 'Offline Resilience Scorecard',
+    slug: 'offline-resilience-scorecard',
+    description: 'Score how well your locks keep working during internet and power outages, and identify weak points.',
+    complexity: 'Moderate',
+    available: true,
+  },
+  {
+    name: 'Installation Time Estimator',
+    slug: 'installation-time-estimator',
+    description: 'Estimate total technician hours, crew-days, and labor cost for smart lock installation projects.',
+    complexity: 'Simple',
+    available: true,
+  },
+  {
+    name: 'Subscription vs Purchase Comparison',
+    slug: 'subscription-vs-purchase-comparison',
+    description: 'Compare long-term costs of paying per-door subscriptions versus buying a local solution outright.',
+    complexity: 'Simple',
+    available: true,
+  },
+  {
+    name: 'Credential Capacity Planner',
+    slug: 'credential-capacity-planner',
+    description: 'Check if your lock can safely store all employee, contractor, and visitor credentials without hitting limits.',
+    complexity: 'Simple',
+    available: true,
+  },
+  {
+    name: 'Emergency Backup Evaluator',
+    slug: 'emergency-backup-evaluator',
+    description: 'Evaluate how robust your emergency unlock backup plan is when batteries or phones fail.',
+    complexity: 'Simple',
+    available: true,
+  },
+];
+---
+
+<BaseLayout
+  title="Interactive Tools"
+  description="Interactive calculators and tools for smart lock deployment planning, protocol selection, cost estimation, and technical analysis."
+>
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <!-- Page Header -->
+    <div class="mb-12">
+      <h1 class="text-4xl font-bold text-gray-900">
+        Interactive Smart Lock Tools
+      </h1>
+      <p class="mt-4 text-xl text-gray-600">
+        15+ calculators and wizards to help you plan, configure, and optimize your smart lock deployment
+      </p>
+    </div>
+
+    <!-- Available Tools -->
+    <div class="mb-16">
+      <h2 class="mb-6 text-2xl font-bold text-gray-900">
+        Available Now
+      </h2>
+      <div class="grid gap-6 md:grid-cols-2">
+        {tools.filter(t => t.available).map((tool) => (
+          <a
+            href={`/tools/${tool.slug}`}
+            class="group block rounded-lg border-2 border-primary-200 bg-white p-6 hover:border-primary-400 hover:shadow-lg"
+          >
+            <div class="flex items-start justify-between">
+              <div class="flex-1">
+                <h3 class="text-xl font-bold text-gray-900 group-hover:text-primary-600">
+                  {tool.name}
+                </h3>
+                <p class="mt-2 text-gray-600">{tool.description}</p>
+                <div class="mt-4">
+                  <span class="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800">
+                    {tool.complexity}
+                  </span>
+                </div>
+              </div>
+              <svg
+                class="h-6 w-6 text-primary-600 group-hover:translate-x-1 transition-transform"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Coming Soon Tools -->
+    <div>
+      <h2 class="mb-6 text-2xl font-bold text-gray-900">
+        Coming Soon
+      </h2>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {tools.filter(t => !t.available).map((tool) => (
+          <div class="rounded-lg border border-gray-200 bg-gray-50 p-6 opacity-75">
+            <div class="mb-3">
+              <span class="rounded-full bg-gray-300 px-2 py-1 text-xs font-medium text-gray-600">
+                In Development
+              </span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-700">
+              {tool.name}
+            </h3>
+            <p class="mt-2 text-sm text-gray-600">{tool.description}</p>
+            <div class="mt-4">
+              <span class="inline-flex items-center rounded-full bg-gray-200 px-3 py-1 text-xs font-medium text-gray-700">
+                {tool.complexity}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Tool Categories -->
+    <div class="mt-16 rounded-lg bg-gray-50 p-8">
+      <h2 class="text-2xl font-bold text-gray-900">Tool Categories</h2>
+      
+      <div class="mt-6 grid gap-6 md:grid-cols-3">
+        <div class="rounded-lg border border-gray-200 bg-white p-6">
+          <div class="text-2xl">💰</div>
+          <h3 class="mt-3 font-bold text-gray-900">Cost Analysis</h3>
+          <p class="mt-2 text-sm text-gray-600">
+            TCO calculators, ROI estimators, battery cost comparisons
+          </p>
+          <div class="mt-3 text-sm text-primary-600">5 tools</div>
+        </div>
+
+        <div class="rounded-lg border border-gray-200 bg-white p-6">
+          <div class="text-2xl">🔧</div>
+          <h3 class="mt-3 font-bold text-gray-900">Technical Planning</h3>
+          <p class="mt-2 text-sm text-gray-600">
+            Protocol selection, RF planning, compatibility checkers
+          </p>
+          <div class="mt-3 text-sm text-primary-600">6 tools</div>
+        </div>
+
+        <div class="rounded-lg border border-gray-200 bg-white p-6">
+          <div class="text-2xl">📊</div>
+          <h3 class="mt-3 font-bold text-gray-900">Comparison Tools</h3>
+          <p class="mt-2 text-sm text-gray-600">
+            Side-by-side protocol, battery life, and feature comparisons
+          </p>
+          <div class="mt-3 text-sm text-primary-600">4 tools</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Why Use Our Tools -->
+    <div class="mt-12 border-t border-gray-200 pt-12">
+      <h2 class="text-2xl font-bold text-gray-900">
+        Why Use Our Calculators?
+      </h2>
+      
+      <div class="mt-6 grid gap-6 md:grid-cols-2">
+        <div>
+          <h3 class="font-semibold text-gray-900">✓ Based on Real Data</h3>
+          <p class="mt-2 text-gray-600">
+            All calculations use actual battery life tests, verified protocol specifications, and real deployment costs.
+          </p>
+        </div>
+        
+        <div>
+          <h3 class="font-semibold text-gray-900">✓ No Sign-up Required</h3>
+          <p class="mt-2 text-gray-600">
+            Use all tools immediately without creating an account. Your data stays in your browser.
+          </p>
+        </div>
+        
+        <div>
+          <h3 class="font-semibold text-gray-900">✓ Export Results</h3>
+          <p class="mt-2 text-gray-600">
+            Save calculations as PDF or share via URL for team discussions and vendor quotes.
+          </p>
+        </div>
+        
+        <div>
+          <h3 class="font-semibold text-gray-900">✓ Always Free</h3>
+          <p class="mt-2 text-gray-600">
+            All calculators are completely free with no hidden fees or premium tiers.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Articles -->
+    <div class="mt-12 rounded-lg bg-blue-50 p-8">
+      <h2 class="text-2xl font-bold text-gray-900">
+        Learn More
+      </h2>
+      <p class="mt-2 text-gray-600">
+        Understand the methodology behind our calculators
+      </p>
+      
+      <div class="mt-6 grid gap-4 md:grid-cols-2">
+        <a
+          href="/protocols/smart-lock-protocols-overview"
+          class="block rounded-lg border border-gray-200 bg-white p-4 hover:border-primary-300"
+        >
+          <h3 class="font-bold text-gray-900">Protocol Comparison Guide</h3>
+          <p class="mt-1 text-sm text-gray-600">
+            Technical analysis of all smart lock protocols
+          </p>
+        </a>
+        
+        <a
+          href="/guides/smart-lock-total-cost-ownership"
+          class="block rounded-lg border border-gray-200 bg-white p-4 hover:border-primary-300"
+        >
+          <h3 class="font-bold text-gray-900">TCO Methodology</h3>
+          <p class="mt-1 text-sm text-gray-600">
+            How we calculate total cost of ownership
+          </p>
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

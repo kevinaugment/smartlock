@@ -1,0 +1,42 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import RFCoverageEstimator from '@/components/calculators/RFCoverageEstimator';
+---
+
+<BaseLayout
+  title="RF Coverage Estimator"
+  description="Estimate RF link quality and repeater requirements for Zigbee, Z-Wave, or Thread smart locks in your building layout."
+>
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="mb-8">
+      <nav class="mb-4 text-sm text-gray-600">
+        <a href="/" class="hover:text-gray-900">Home</a>
+        <span class="mx-2">/</span>
+        <a href="/tools" class="hover:text-gray-900">Tools</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-900">RF Coverage Estimator</span>
+      </nav>
+
+      <h1 class="text-4xl font-bold text-gray-900">
+        RF Coverage Estimator
+      </h1>
+      <p class="mt-4 text-xl text-gray-600">
+        Quickly approximate how well Zigbee, Z-Wave, or Thread locks will reach
+        your doors from a central gateway, and how many repeaters you might
+        need.
+      </p>
+    </div>
+
+    <RFCoverageEstimator client:load />
+
+    <div class="mt-16 rounded-lg border border-gray-200 bg-gray-50 p-8">
+      <h2 class="text-2xl font-bold text-gray-900">What this estimator considers</h2>
+      <div class="mt-6 space-y-2 text-gray-700 text-sm">
+        <p>• Indoor range assumptions for each protocol</p>
+        <p>• Number of floors and overall floor area</p>
+        <p>• Typical distance from the gateway to doors</p>
+        <p>• Wall / floor construction and major obstacles</p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

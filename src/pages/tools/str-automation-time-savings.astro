@@ -1,0 +1,40 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import STRAutomationTimeSavings from '@/components/calculators/STRAutomationTimeSavings';
+---
+
+<BaseLayout
+  title="STR Automation Time Savings Calculator"
+  description="Estimate how much staff time and error rate you can save by automating key handoffs in your short-term rental workflow."
+>
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="mb-8">
+      <nav class="mb-4 text-sm text-gray-600">
+        <a href="/" class="hover:text-gray-900">Home</a>
+        <span class="mx-2">/</span>
+        <a href="/tools" class="hover:text-gray-900">Tools</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-900">STR Automation Time Savings Calculator</span>
+      </nav>
+
+      <h1 class="text-4xl font-bold text-gray-900">
+        Short-term Rental Automation Time Savings
+      </h1>
+      <p class="mt-4 text-xl text-gray-600">
+        Compare your current manual key handoff workflow with an automated
+        smart-lock-based process in terms of hours spent and error rates.
+      </p>
+    </div>
+
+    <STRAutomationTimeSavings client:load />
+
+    <div class="mt-16 rounded-lg border border-gray-200 bg-gray-50 p-8">
+      <h2 class="text-2xl font-bold text-gray-900">What this calculator shows</h2>
+      <div class="mt-6 space-y-2 text-gray-700 text-sm">
+        <p>• Annual hours spent on manual key handoffs vs automated flows</p>
+        <p>• Monetary value of time saved based on your effective hourly rate</p>
+        <p>• Approximate reduction in workflow errors (wrong codes, missed keys)</p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

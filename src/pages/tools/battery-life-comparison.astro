@@ -1,0 +1,66 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BatteryLifeComparisonCalculator from '@/components/calculators/BatteryLifeComparison';
+---
+
+<BaseLayout
+  title="Smart Lock Battery Life Comparison"
+  description="Compare battery life and annual battery costs across smart lock protocols under your specific usage scenario."
+>
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="mb-8">
+      <nav class="mb-4 text-sm text-gray-600">
+        <a href="/" class="hover:text-gray-900">Home</a>
+        <span class="mx-2">/</span>
+        <a href="/tools" class="hover:text-gray-900">Tools</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-900">Battery Life Comparison</span>
+      </nav>
+
+      <h1 class="text-4xl font-bold text-gray-900">
+        Smart Lock Battery Life Comparison
+      </h1>
+      <p class="mt-4 text-xl text-gray-600">
+        Estimate how often you will need to replace batteries for different smart
+        lock protocols, and how much that will cost you each year.
+      </p>
+    </div>
+
+    <BatteryLifeComparisonCalculator client:load />
+
+    <div class="mt-16 rounded-lg border border-gray-200 bg-gray-50 p-8">
+      <h2 class="text-2xl font-bold text-gray-900">Calculation Methodology</h2>
+
+      <div class="mt-6 space-y-4 text-gray-700">
+        <div>
+          <h3 class="font-semibold text-gray-900">Baseline Battery Life</h3>
+          <p class="mt-1">
+            Each protocol is given a baseline battery life in days under typical
+            conditions (room temperature, around 20 operations per day, no heavy
+            background traffic): Wi-Fi, Zigbee, Z-Wave, Thread, and Bluetooth.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="font-semibold text-gray-900">Usage and Environment Factors</h3>
+          <p class="mt-1">
+            Battery life is scaled by your selected daily door operations,
+            temperature band (room temperature, cold, freezing), and optional
+            features such as auto-lock, frequent remote status checks, and
+            always-on Wi-Fi radios.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="font-semibold text-gray-900">Cost Estimation</h3>
+          <p class="mt-1">
+            Based on the effective battery life and the price you enter for a
+            full battery set, the tool calculates how many replacements are
+            required per year and the corresponding annual and multi-year
+            battery costs for each protocol.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

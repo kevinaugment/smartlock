@@ -1,0 +1,110 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Home"
+  description="Technical smart lock engineering hub - protocols, security, deployment guides, and calculators"
+>
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <!-- Hero Section -->
+    <div class="text-center">
+      <h1 class="text-5xl font-bold text-gray-900">
+        Smart Lock Engineering Hub
+      </h1>
+      <p class="mx-auto mt-4 max-w-2xl text-xl text-gray-600">
+        Technical resources for smart lock deployment: protocol comparisons,
+        security analysis, and practical calculators
+      </p>
+      <div class="mt-8 flex justify-center space-x-4">
+        <a
+          href="/protocols/smart-lock-protocols-overview"
+          class="btn btn-primary"
+        >
+          Protocol Guide
+        </a>
+        <a href="/tools" class="btn btn-secondary"> Explore Calculators </a>
+      </div>
+    </div>
+
+    <!-- Feature Grid -->
+    <div class="mt-20 grid gap-8 md:grid-cols-3">
+      <div class="card">
+        <h3 class="text-xl font-bold text-gray-900">Protocol Deep Dives</h3>
+        <p class="mt-2 text-gray-600">
+          Technical comparison of Wi-Fi, Zigbee, Z-Wave, Thread, and Matter for
+          smart locks
+        </p>
+        <a href="/protocols" class="mt-4 inline-block text-primary-600"
+          >View Articles →</a
+        >
+      </div>
+
+      <div class="card">
+        <h3 class="text-xl font-bold text-gray-900">Security Analysis</h3>
+        <p class="mt-2 text-gray-600">
+          Threat modeling, encryption analysis, and security best practices
+        </p>
+        <a href="/security" class="mt-4 inline-block text-primary-600"
+          >Learn More →</a
+        >
+      </div>
+
+      <div class="card">
+        <h3 class="text-xl font-bold text-gray-900">Interactive Tools</h3>
+        <p class="mt-2 text-gray-600">
+          15+ calculators for TCO, battery life, protocol selection, and RF
+          planning
+        </p>
+        <a href="/tools" class="mt-4 inline-block text-primary-600"
+          >Use Tools →</a
+        >
+      </div>
+    </div>
+
+    <!-- Recent Articles -->
+    <div class="mt-20">
+      <h2 class="text-3xl font-bold text-gray-900">Popular Articles</h2>
+      <div class="mt-8 space-y-6">
+        <a
+          href="/protocols/smart-lock-protocols-overview"
+          class="block rounded-lg border border-gray-200 p-6 hover:border-primary-300"
+        >
+          <h3 class="text-xl font-bold">
+            Smart Lock Communication Protocols: Complete Guide
+          </h3>
+          <p class="mt-2 text-gray-600">
+            Comprehensive technical comparison of Wi-Fi, Zigbee, Z-Wave,
+            Thread, and Matter protocols
+          </p>
+        </a>
+
+        <a
+          href="/security/smart-lock-security-analysis"
+          class="block rounded-lg border border-gray-200 p-6 hover:border-primary-300"
+        >
+          <h3 class="text-xl font-bold">
+            Are Smart Locks Secure? Complete Security Analysis
+          </h3>
+          <p class="mt-2 text-gray-600">
+            Threat modeling, encryption analysis, and real-world attack case
+            studies
+          </p>
+        </a>
+
+        <a
+          href="/support/smart-lock-keeps-going-offline"
+          class="block rounded-lg border border-gray-200 p-6 hover:border-primary-300"
+        >
+          <h3 class="text-xl font-bold">
+            Why Does My Smart Lock Keep Going Offline?
+          </h3>
+          <p class="mt-2 text-gray-600">
+            Quick troubleshooting guide for connection issues - most common
+            causes and solutions
+          </p>
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

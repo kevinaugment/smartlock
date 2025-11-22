@@ -1,0 +1,184 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const articles = await getCollection('articles', ({ data }) => {
+  return data.category === 'installation';
+});
+
+// Sort by date (newest first)
+const sortedArticles = articles.sort((a, b) => {
+  return b.data.pubDate.getTime() - a.data.pubDate.getTime();
+});
+
+// Separate pillar articles
+const pillarArticles = sortedArticles.filter((a) => a.data.isPillar);
+const regularArticles = sortedArticles.filter((a) => !a.data.isPillar);
+---
+
+<BaseLayout
+  title="Smart Lock Installation"
+  description="Expert guides for smart lock installation, compatibility, battery life, and RF mesh network planning"
+>
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <!-- Page Header -->
+    <div class="mb-12">
+      <h1 class="text-4xl font-bold text-gray-900">
+        Installation & Setup
+      </h1>
+      <p class="mt-4 text-xl text-gray-600">
+        Professional installation guides covering door compatibility, battery optimization,
+        RF mesh networks, and troubleshooting for successful smart lock deployments
+      </p>
+    </div>
+
+    <!-- Pillar Articles -->
+    {
+      pillarArticles.length > 0 && (
+        <div class="mb-16">
+          <h2 class="mb-6 text-2xl font-bold text-gray-900">
+            Complete Installation Guides
+          </h2>
+          <div class="grid gap-6 md:grid-cols-2">
+            {pillarArticles.map((article) => (
+              <a
+                href={`/installation/${article.slug.replace('installation/', '')}`}
+                class="group block rounded-lg border-2 border-primary-200 bg-white p-6 hover:border-primary-400 hover:shadow-lg"
+              >
+                <div class="mb-2 text-sm font-semibold uppercase text-primary-600">
+                  Pillar Article
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 group-hover:text-primary-600">
+                  {article.data.title}
+                </h3>
+                <p class="mt-2 text-gray-600">{article.data.description}</p>
+                <div class="mt-4 flex items-center text-sm text-gray-500">
+                  <span>{article.data.readingTime} min read</span>
+                  <span class="mx-2">•</span>
+                  <span>{article.data.wordCount} words</span>
+                </div>
+                {article.data.tags && (
+                  <div class="mt-4 flex flex-wrap gap-2">
+                    {article.data.tags.slice(0, 3).map((tag) => (
+                      <span class="rounded-full bg-blue-100 px-2 py-1 text-xs text-blue-800">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </a>
+            ))}
+          </div>
+        </div>
+      )
+    }
+
+    <!-- Regular Articles -->
+    {
+      regularArticles.length > 0 && (
+        <div>
+          <h2 class="mb-6 text-2xl font-bold text-gray-900">
+            Installation Topics
+          </h2>
+          <div class="space-y-6">
+            {regularArticles.map((article) => (
+              <a
+                href={`/installation/${article.slug.replace('installation/', '')}`}
+                class="block rounded-lg border border-gray-200 p-6 hover:border-primary-300 hover:bg-blue-50"
+              >
+                <h3 class="text-xl font-bold text-gray-900">
+                  {article.data.title}
+                </h3>
+                <p class="mt-2 text-gray-600">{article.data.description}</p>
+                <div class="mt-4 flex items-center text-sm text-gray-500">
+                  <time datetime={article.data.pubDate.toISOString()}>
+                    {new Date(article.data.pubDate).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
+                  </time>
+                  <span class="mx-2">•</span>
+                  <span>{article.data.readingTime} min read</span>
+                </div>
+                {article.data.tags && (
+                  <div class="mt-4 flex flex-wrap gap-2">
+                    {article.data.tags.slice(0, 4).map((tag) => (
+                      <span class="rounded-full bg-gray-100 px-2 py-1 text-xs text-gray-700">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </a>
+            ))}
+          </div>
+        </div>
+      )
+    }
+
+    {/* No articles message */}
+    {
+      articles.length === 0 && (
+        <div class="rounded-lg border-2 border-dashed border-gray-300 p-12 text-center">
+          <p class="text-gray-600">No installation guides available yet.</p>
+        </div>
+      )
+    }
+
+    <!-- Related Tools -->
+    <div class="mt-16 rounded-lg bg-gray-50 p-8">
+      <h2 class="text-2xl font-bold text-gray-900">Installation Planning Tools</h2>
+      <p class="mt-2 text-gray-600">
+        Use our calculators to plan your installation
+      </p>
+      <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <a
+          href="/tools/door-lock-compatibility-checker"
+          class="rounded-lg border border-gray-200 bg-white p-4 hover:border-primary-300"
+        >
+          <h3 class="font-bold text-gray-900">Door Compatibility Checker</h3>
+          <p class="mt-1 text-sm text-gray-600">
+            Check if your door is compatible
+          </p>
+        </a>
+        <a
+          href="/tools/installation-time-estimator"
+          class="rounded-lg border border-gray-200 bg-white p-4 hover:border-primary-300"
+        >
+          <h3 class="font-bold text-gray-900">Time Estimator</h3>
+          <p class="mt-1 text-sm text-gray-600">
+            Estimate installation time
+          </p>
+        </a>
+        <a
+          href="/tools/battery-life-comparison"
+          class="rounded-lg border border-gray-200 bg-white p-4 hover:border-primary-300"
+        >
+          <h3 class="font-bold text-gray-900">Battery Life Comparison</h3>
+          <p class="mt-1 text-sm text-gray-600">
+            Compare battery performance
+          </p>
+        </a>
+        <a
+          href="/tools/mesh-node-planner"
+          class="rounded-lg border border-gray-200 bg-white p-4 hover:border-primary-300"
+        >
+          <h3 class="font-bold text-gray-900">Mesh Network Planner</h3>
+          <p class="mt-1 text-sm text-gray-600">
+            Plan your RF mesh network
+          </p>
+        </a>
+        <a
+          href="/tools/rf-coverage-estimator"
+          class="rounded-lg border border-gray-200 bg-white p-4 hover:border-primary-300"
+        >
+          <h3 class="font-bold text-gray-900">RF Coverage Estimator</h3>
+          <p class="mt-1 text-sm text-gray-600">
+            Estimate wireless coverage
+          </p>
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

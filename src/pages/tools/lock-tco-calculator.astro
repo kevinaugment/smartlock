@@ -1,0 +1,119 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TCOCalculator from '@/components/calculators/TCOCalculator';
+---
+
+<BaseLayout
+  title="Smart Lock TCO Calculator"
+  description="Calculate total cost of ownership for smart lock deployments across different protocols. Compare Wi-Fi, Zigbee, Z-Wave, and Thread locks."
+>
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <!-- Page Header -->
+    <div class="mb-8">
+      <nav class="mb-4 text-sm text-gray-600">
+        <a href="/" class="hover:text-gray-900">Home</a>
+        <span class="mx-2">/</span>
+        <a href="/tools" class="hover:text-gray-900">Tools</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-900">TCO Calculator</span>
+      </nav>
+
+      <h1 class="text-4xl font-bold text-gray-900">
+        Smart Lock TCO Calculator
+      </h1>
+      <p class="mt-4 text-xl text-gray-600">
+        Calculate total cost of ownership for your smart lock deployment. Compare protocols, door counts, and timeframes.
+      </p>
+    </div>
+
+    <!-- Calculator Component -->
+    <TCOCalculator client:load />
+
+    <!-- Methodology Section -->
+    <div class="mt-16 rounded-lg border border-gray-200 bg-gray-50 p-8">
+      <h2 class="text-2xl font-bold text-gray-900">Calculation Methodology</h2>
+      
+      <div class="mt-6 space-y-4 text-gray-700">
+        <div>
+          <h3 class="font-semibold text-gray-900">Hardware Costs</h3>
+          <p class="mt-1">
+            Lock price × number of doors. Assumes same model for all doors.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="font-semibold text-gray-900">Hub/Gateway Costs</h3>
+          <ul class="mt-1 list-inside list-disc space-y-1">
+            <li><strong>Wi-Fi</strong>: $0 (uses existing router)</li>
+            <li><strong>Zigbee</strong>: $80 (SmartThings, Aqara Hub)</li>
+            <li><strong>Z-Wave</strong>: $120 (Z-Wave controller)</li>
+            <li><strong>Thread</strong>: $150 (Border Router / HomePod mini)</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-semibold text-gray-900">Battery Life Assumptions</h3>
+          <ul class="mt-1 list-inside list-disc space-y-1">
+            <li><strong>Wi-Fi</strong>: 3 months (always-on radio)</li>
+            <li><strong>Zigbee</strong>: 12 months (low-power mesh)</li>
+            <li><strong>Z-Wave</strong>: 12 months (low-power mesh)</li>
+            <li><strong>Thread</strong>: 10 months (low-power IP)</li>
+          </ul>
+          <p class="mt-2 text-sm">
+            Battery life based on average 10 operations/day. Heavy usage (30+ ops/day) reduces life by 30-50%.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="font-semibold text-gray-900">Battery Costs</h3>
+          <p class="mt-1">
+            $8 per replacement (4× AA alkaline batteries). Lithium batteries cost $15 but last 30% longer in cold climates.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hidden Costs Section -->
+    <div class="mt-8 rounded-lg border border-yellow-200 bg-yellow-50 p-6">
+      <h3 class="text-lg font-semibold text-yellow-900">⚠️ Hidden Costs Not Included</h3>
+      <ul class="mt-3 space-y-2 text-sm text-yellow-800">
+        <li>• <strong>Installation labor</strong> ($50-150 per door if professional)</li>
+        <li>• <strong>Door modifications</strong> ($20-100 if backset/thickness incompatible)</li>
+        <li>• <strong>Mesh repeaters</strong> ($15-30 each if Zigbee/Z-Wave needs range extension)</li>
+        <li>• <strong>Cloud subscriptions</strong> (some brands charge $3-10/month for remote access)</li>
+        <li>• <strong>Lock replacement</strong> (mechanical wear typically 7-10 years)</li>
+      </ul>
+    </div>
+
+    <!-- Related Resources -->
+    <div class="mt-16 border-t border-gray-200 pt-12">
+      <h2 class="text-2xl font-bold text-gray-900">Related Resources</h2>
+      
+      <div class="mt-6 grid gap-6 md:grid-cols-2">
+        <a
+          href="/protocols/smart-lock-protocols-overview"
+          class="block rounded-lg border border-gray-200 p-6 hover:border-primary-300 hover:bg-blue-50"
+        >
+          <h3 class="text-lg font-semibold text-gray-900">
+            Protocol Comparison Guide
+          </h3>
+          <p class="mt-2 text-gray-600">
+            Deep dive into Wi-Fi, Zigbee, Z-Wave, and Thread protocols
+          </p>
+        </a>
+
+        <a
+          href="/tools/battery-life-comparison"
+          class="block rounded-lg border border-gray-200 p-6 hover:border-primary-300 hover:bg-blue-50"
+        >
+          <h3 class="text-lg font-semibold text-gray-900">
+            Battery Life Calculator
+          </h3>
+          <p class="mt-2 text-gray-600">
+            Detailed battery consumption analysis by protocol and usage
+          </p>
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

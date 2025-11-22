@@ -1,0 +1,41 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SmartHomeIntegrationCheckerCalculator from '@/components/calculators/SmartHomeIntegrationChecker';
+---
+
+<BaseLayout
+  title="Smart Home Integration Checker"
+  description="See which smart locks integrate natively or via bridge with your existing HomeKit, Google Home, Alexa, or SmartThings setup."
+>
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="mb-8">
+      <nav class="mb-4 text-sm text-gray-600">
+        <a href="/" class="hover:text-gray-900">Home</a>
+        <span class="mx-2">/</span>
+        <a href="/tools" class="hover:text-gray-900">Tools</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-900">Smart Home Integration Checker</span>
+      </nav>
+
+      <h1 class="text-4xl font-bold text-gray-900">
+        Smart Home Integration Checker
+      </h1>
+      <p class="mt-4 text-xl text-gray-600">
+        Pick your existing smart home platforms and must-have features. This
+        tool highlights locks that integrate natively, via vendor hub, or not at
+        all.
+      </p>
+    </div>
+
+    <SmartHomeIntegrationCheckerCalculator client:load />
+
+    <div class="mt-16 rounded-lg border border-gray-200 bg-gray-50 p-8">
+      <h2 class="text-2xl font-bold text-gray-900">What this checker does</h2>
+      <div class="mt-6 space-y-2 text-gray-700 text-sm">
+        <p>• Scores locks by native vs bridged support for your platforms</p>
+        <p>• Checks required feature coverage (remote unlock, PINs, history)</p>
+        <p>• Boosts Matter-ready / Thread-based designs if you prefer them</p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

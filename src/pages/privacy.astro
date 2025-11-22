@@ -1,0 +1,150 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Privacy Policy"
+  description="Privacy Policy for Smart Lock Engineering Hub"
+>
+  <div class="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
+    <article class="prose prose-lg mx-auto">
+      <h1>Privacy Policy</h1>
+      
+      <p class="lead">
+        Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+      </p>
+
+      <h2>Overview</h2>
+      <p>
+        Smart Lock Engineering Hub ("we", "our", or "us") is committed to protecting your privacy. 
+        This Privacy Policy explains how we collect, use, and safeguard information when you visit 
+        our website.
+      </p>
+
+      <h2>Information We Collect</h2>
+      
+      <h3>Information You Provide</h3>
+      <ul>
+        <li><strong>Calculator Inputs</strong> - When you use our interactive tools, input data is processed locally in your browser and not stored on our servers</li>
+        <li><strong>No Account Required</strong> - We do not require user registration or accounts</li>
+      </ul>
+
+      <h3>Automatically Collected Information</h3>
+      <ul>
+        <li><strong>Analytics Data</strong> - We collect anonymous usage statistics including:
+          <ul>
+            <li>Page views and navigation patterns</li>
+            <li>Device type and browser information</li>
+            <li>Geographic location (country/region level only)</li>
+            <li>Referral sources</li>
+          </ul>
+        </li>
+        <li><strong>Technical Data</strong> - Server logs may include IP addresses, timestamps, and error reports</li>
+      </ul>
+
+      <h2>How We Use Information</h2>
+      <p>
+        We use collected information to:
+      </p>
+      <ul>
+        <li>Improve website content and user experience</li>
+        <li>Understand which topics and tools are most valuable</li>
+        <li>Identify and fix technical issues</li>
+        <li>Analyze traffic patterns and trends</li>
+      </ul>
+
+      <h2>Data Storage and Security</h2>
+      <ul>
+        <li><strong>No Personal Data</strong> - We do not collect names, emails, phone numbers, or other personally identifiable information</li>
+        <li><strong>Local Processing</strong> - Calculator inputs are processed in your browser and never transmitted to our servers</li>
+        <li><strong>Anonymous Analytics</strong> - All analytics data is aggregated and anonymous</li>
+        <li><strong>Secure Infrastructure</strong> - Hosted on Cloudflare Pages with industry-standard security</li>
+      </ul>
+
+      <h2>Cookies</h2>
+      <p>
+        We use minimal cookies for:
+      </p>
+      <ul>
+        <li><strong>Analytics</strong> - To track anonymous usage statistics</li>
+        <li><strong>Preferences</strong> - To remember your calculator settings (stored locally)</li>
+      </ul>
+      <p>
+        You can disable cookies in your browser settings. This may affect some interactive features.
+      </p>
+
+      <h2>Third-Party Services</h2>
+      <p>
+        We may use third-party services for:
+      </p>
+      <ul>
+        <li><strong>Analytics</strong> - To understand website usage patterns</li>
+        <li><strong>CDN & Hosting</strong> - Cloudflare Pages for content delivery</li>
+      </ul>
+      <p>
+        These services have their own privacy policies and data practices.
+      </p>
+
+      <h2>External Links</h2>
+      <p>
+        Our website contains links to external resources including:
+      </p>
+      <ul>
+        <li>Manufacturer specifications and documentation</li>
+        <li>Industry standards organizations</li>
+        <li>Technical reference materials</li>
+      </ul>
+      <p>
+        We are not responsible for the privacy practices of external websites.
+      </p>
+
+      <h2>Children's Privacy</h2>
+      <p>
+        Our website is intended for professional and technical audiences. We do not knowingly 
+        collect information from children under 13 years of age.
+      </p>
+
+      <h2>Your Rights</h2>
+      <p>
+        You have the right to:
+      </p>
+      <ul>
+        <li>Access your data (though we collect minimal personal data)</li>
+        <li>Request data deletion</li>
+        <li>Opt out of analytics tracking</li>
+        <li>Disable cookies in your browser</li>
+      </ul>
+
+      <h2>International Users</h2>
+      <p>
+        Our website is hosted in the United States. If you access our site from outside the US, 
+        your information may be transferred to, stored, and processed in the US.
+      </p>
+
+      <h2>Changes to This Policy</h2>
+      <p>
+        We may update this Privacy Policy from time to time. Changes will be posted on this page 
+        with an updated revision date.
+      </p>
+
+      <h2>Contact Us</h2>
+      <p>
+        If you have questions about this Privacy Policy or our data practices, please contact us 
+        through the information provided on our About page.
+      </p>
+
+      <div class="not-prose mt-12 rounded-lg bg-gray-50 p-6">
+        <h3 class="text-lg font-bold text-gray-900">Questions?</h3>
+        <p class="mt-2 text-gray-600">
+          Read our About page for more information about our mission and practices.
+        </p>
+        <a
+          href="/about"
+          class="mt-4 inline-flex items-center text-primary-600 hover:text-primary-700"
+        >
+          Learn more about us →
+        </a>
+      </div>
+    </article>
+  </div>
+</BaseLayout>

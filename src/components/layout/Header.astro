@@ -1,0 +1,220 @@
+---
+// Mega Menu Navigation Component
+// Note: currentPath prop is received but not used in current implementation
+const siteTitle = 'Smart Lock Engineering Hub';
+
+const megaMenuSections = [
+  {
+    title: 'Protocols',
+    href: '/protocols',
+    description: 'Wireless protocols & technical comparison',
+    items: [
+      { name: 'Protocol Overview', href: '/protocols/smart-lock-protocols-overview' },
+      { name: 'Zigbee vs Z-Wave', href: '/protocols/zigbee-vs-zwave-locks' },
+      { name: 'Matter Protocol', href: '/protocols/matter-for-smart-locks' },
+      { name: 'Thread Protocol', href: '/protocols/thread-for-smart-locks' },
+      { name: 'Local vs Cloud', href: '/protocols/local-vs-cloud-architecture' },
+    ]
+  },
+  {
+    title: 'Security',
+    href: '/security',
+    description: 'Security analysis & threat modeling',
+    items: [
+      { name: 'Security Analysis', href: '/security/smart-lock-security-analysis' },
+      { name: 'Threat Modeling', href: '/security/threat-modeling-security-architecture' },
+      { name: 'Z-Wave S2 Security', href: '/security/zwave-s2-security-architecture' },
+      { name: 'Data Privacy & Compliance', href: '/security/data-privacy-compliance-guide' },
+      { name: 'Audit Trail & Forensics', href: '/security/audit-trail-forensic-analysis' },
+    ]
+  },
+  {
+    title: 'Installation',
+    href: '/installation',
+    description: 'Setup guides & troubleshooting',
+    items: [
+      { name: 'Door Compatibility', href: '/installation/door-compatibility-guide' },
+      { name: 'Battery Life Guide', href: '/installation/smart-lock-battery-life-guide' },
+      { name: 'RF Network Planning', href: '/installation/rf-mesh-network-planning' },
+      { name: 'Troubleshooting', href: '/installation/smart-lock-troubleshooting-guide' },
+    ]
+  },
+  {
+    title: 'Use Cases',
+    href: '/use-cases',
+    description: 'Industry solutions & deployments',
+    items: [
+      { name: 'Airbnb & Short Rentals', href: '/use-cases/smart-locks-airbnb-guide' },
+      { name: 'Long-term Rentals', href: '/use-cases/long-term-rental-property-strategy' },
+      { name: 'Multi-Unit Buildings', href: '/use-cases/multi-unit-buildings' },
+      { name: 'Office Access Control', href: '/use-cases/office-access-control' },
+      { name: 'Hotels & Hospitality', href: '/use-cases/hotel-hospitality-deployment' },
+      { name: 'Healthcare Facilities', href: '/use-cases/healthcare-facility-deployment' },
+    ]
+  },
+  {
+    title: 'Guides',
+    href: '/guides',
+    description: 'Best practices & implementation',
+    items: [
+      { name: 'Smart vs Traditional Locks', href: '/guides/smart-lock-vs-traditional-lock' },
+      { name: 'Total Cost of Ownership', href: '/guides/smart-lock-total-cost-ownership' },
+      { name: 'Battery Emergency', href: '/guides/smart-lock-battery-emergency' },
+      { name: 'Platform Integration', href: '/guides/smart-home-platform-integration' },
+      { name: 'Credential Management', href: '/guides/credential-management-best-practices' },
+    ]
+  },
+  {
+    title: 'Integration',
+    href: '/integration',
+    description: 'Enterprise system integration',
+    items: [
+      { name: 'Building Automation', href: '/integration/building-automation-system-integration' },
+      { name: 'Enterprise Systems', href: '/integration/enterprise-system-integration' },
+      { name: 'Meeting Room Calendar', href: '/integration/meeting-room-calendar-integration' },
+      { name: 'Visitor Management', href: '/integration/visitor-management-system-integration' },
+    ]
+  },
+  {
+    title: 'Technical',
+    href: '/technical',
+    description: 'Advanced technical deep dives',
+    items: [
+      { name: 'Firmware Updates', href: '/technical/firmware-update-security-management' },
+      { name: 'Offline Capability', href: '/technical/offline-capability-design' },
+      { name: 'Performance Optimization', href: '/technical/performance-benchmarking-optimization' },
+    ]
+  },
+  {
+    title: 'Tools',
+    href: '/tools',
+    description: 'Interactive calculators & tools',
+    highlight: true,
+    items: [
+      { name: 'Protocol Selection Wizard', href: '/tools/protocol-selection-wizard' },
+      { name: 'TCO Calculator', href: '/tools/lock-tco-calculator' },
+      { name: 'Battery Life Comparison', href: '/tools/battery-life-comparison' },
+      { name: 'Door Compatibility Checker', href: '/tools/door-lock-compatibility-checker' },
+      { name: 'STR ROI Calculator', href: '/tools/short-term-rental-roi-calculator' },
+    ]
+  },
+  {
+    title: 'Support',
+    href: '/support',
+    description: 'Quick answers & troubleshooting',
+    items: [
+      { name: 'Complete Troubleshooting', href: '/support/complete-troubleshooting-guide' },
+      { name: 'Connection Issues', href: '/support/smart-lock-wont-pair-with-hub' },
+      { name: 'Battery Problems', href: '/support/battery-dies-too-fast' },
+      { name: 'Code Not Working', href: '/support/pin-code-not-working' },
+    ]
+  },
+];
+---
+
+<header class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+  <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <!-- Main navigation bar -->
+    <div class="flex h-16 items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <a href="/" class="flex items-center space-x-2">
+          <svg class="h-8 w-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+          </svg>
+          <span class="text-lg font-bold text-gray-900 hidden sm:block">{siteTitle}</span>
+        </a>
+      </div>
+
+      <!-- Desktop menu -->
+      <div class="hidden lg:flex lg:items-center lg:space-x-1">
+        {megaMenuSections.map((section) => (
+          <div class="mega-menu-trigger relative group">
+            <a
+              href={section.href}
+              class:list={[
+                'px-3 py-2 text-sm font-medium rounded-md transition-colors',
+                section.highlight ? 'text-primary-600 hover:bg-primary-50' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+              ]}
+            >
+              {section.title}
+            </a>
+            
+            <!-- Mega menu dropdown -->
+            <div class="mega-menu-dropdown absolute left-0 top-full mt-1 hidden w-64 rounded-lg border border-gray-200 bg-white p-4 shadow-lg group-hover:block">
+              <div class="mb-2">
+                <p class="text-xs font-semibold uppercase text-gray-500">{section.description}</p>
+              </div>
+              <div class="space-y-1">
+                {section.items.map((item) => (
+                  <a
+                    href={item.href}
+                    class="block rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary-600 transition-colors"
+                  >
+                    {item.name}
+                  </a>
+                ))}
+              </div>
+              <div class="mt-3 pt-3 border-t border-gray-100">
+                <a
+                  href={section.href}
+                  class="inline-flex items-center text-sm font-medium text-primary-600 hover:text-primary-700"
+                >
+                  View all {section.title}
+                  <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Mobile menu button -->
+      <button
+        id="mobile-menu-button"
+        class="lg:hidden rounded-md p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+        aria-label="Open menu"
+      >
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-gray-200 py-4">
+      {megaMenuSections.map((section) => (
+        <div class="mb-4">
+          <a
+            href={section.href}
+            class="block px-3 py-2 text-base font-semibold text-gray-900"
+          >
+            {section.title}
+          </a>
+          <div class="mt-1 space-y-1 pl-3">
+            {section.items.slice(0, 4).map((item) => (
+              <a
+                href={item.href}
+                class="block px-3 py-1.5 text-sm text-gray-600 hover:text-primary-600"
+              >
+                {item.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Mobile menu toggle
+  const menuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  menuButton?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+</script>

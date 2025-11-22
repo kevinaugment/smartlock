@@ -1,0 +1,41 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ShortTermRentalROICalculator from '@/components/calculators/ShortTermRentalROICalculator';
+---
+
+<BaseLayout
+  title="Short-term Rental ROI Calculator"
+  description="Estimate how quickly a smart lock rollout for your short-term rentals pays for itself in saved time, reduced lockouts, and fewer lost keys."
+>
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="mb-8">
+      <nav class="mb-4 text-sm text-gray-600">
+        <a href="/" class="hover:text-gray-900">Home</a>
+        <span class="mx-2">/</span>
+        <a href="/tools" class="hover:text-gray-900">Tools</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-900">Short-term Rental ROI Calculator</span>
+      </nav>
+
+      <h1 class="text-4xl font-bold text-gray-900">
+        Short-term Rental ROI Calculator
+      </h1>
+      <p class="mt-4 text-xl text-gray-600">
+        Model the annual savings, payback period, and multi-year ROI of
+        deploying smart locks across your Airbnb or short-term rental portfolio.
+      </p>
+    </div>
+
+    <ShortTermRentalROICalculator client:load />
+
+    <div class="mt-16 rounded-lg border border-gray-200 bg-gray-50 p-8">
+      <h2 class="text-2xl font-bold text-gray-900">What this calculator models</h2>
+      <div class="mt-6 space-y-2 text-gray-700 text-sm">
+        <p>• Time saved from not driving to properties for every check-in/out</p>
+        <p>• Reduced lockout incidents and emergency locksmith calls</p>
+        <p>• Fewer lost keys and rekeying costs</p>
+        <p>• Smart lock hardware, installation, subscriptions, and batteries</p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,96 @@
+---
+// Footer component with sitemap and links
+const currentYear = new Date().getFullYear();
+
+const footerSections = [
+  {
+    title: 'Content',
+    links: [
+      { name: 'Protocols', href: '/protocols' },
+      { name: 'Security', href: '/security' },
+      { name: 'Installation', href: '/installation' },
+      { name: 'Use Cases', href: '/use-cases' },
+      { name: 'Guides', href: '/guides' },
+    ]
+  },
+  {
+    title: 'Tools',
+    links: [
+      { name: 'Protocol Selection', href: '/tools/protocol-selection-wizard' },
+      { name: 'TCO Calculator', href: '/tools/lock-tco-calculator' },
+      { name: 'Battery Comparison', href: '/tools/battery-life-comparison' },
+      { name: 'All Tools', href: '/tools' },
+    ]
+  },
+  {
+    title: 'Support',
+    links: [
+      { name: 'Troubleshooting', href: '/support/complete-troubleshooting-guide' },
+      { name: 'FAQ', href: '/support' },
+      { name: 'Installation Help', href: '/installation/smart-lock-troubleshooting-guide' },
+    ]
+  },
+  {
+    title: 'About',
+    links: [
+      { name: 'About Us', href: '/about' },
+      { name: 'Privacy Policy', href: '/privacy' },
+      { name: 'Terms of Service', href: '/terms' },
+    ]
+  },
+];
+---
+
+<footer class="bg-gray-50 border-t border-gray-200">
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <!-- Main footer content -->
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+      {footerSections.map((section) => (
+        <div>
+          <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-900">
+            {section.title}
+          </h3>
+          <ul class="space-y-2">
+            {section.links.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-sm text-gray-600 hover:text-primary-600 transition-colors"
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <!-- Divider -->
+    <div class="mt-12 border-t border-gray-200 pt-8">
+      <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
+        <!-- Copyright -->
+        <p class="text-sm text-gray-600">
+          © {currentYear} Smart Lock Engineering Hub. All rights reserved.
+        </p>
+
+        <!-- Additional links -->
+        <div class="flex items-center space-x-6">
+          <a href="/sitemap.xml" class="text-sm text-gray-600 hover:text-primary-600">
+            Sitemap
+          </a>
+          <a href="/rss.xml" class="text-sm text-gray-600 hover:text-primary-600">
+            RSS
+          </a>
+        </div>
+      </div>
+
+      <!-- Disclaimer -->
+      <div class="mt-4 text-center">
+        <p class="text-xs text-gray-500">
+          Technical information provided for educational purposes. Always consult manufacturer specifications and local regulations.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

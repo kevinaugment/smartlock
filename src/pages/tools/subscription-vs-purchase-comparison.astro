@@ -1,0 +1,40 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SubscriptionVsPurchaseComparisonCalculator from '@/components/calculators/SubscriptionVsPurchaseComparison';
+---
+
+<BaseLayout
+  title="Subscription vs Purchase Comparison"
+  description="Compare long-term costs of paying a per-door subscription vs buying a local access control solution outright."
+>
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="mb-8">
+      <nav class="mb-4 text-sm text-gray-600">
+        <a href="/" class="hover:text-gray-900">Home</a>
+        <span class="mx-2">/</span>
+        <a href="/tools" class="hover:text-gray-900">Tools</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-900">Subscription vs Purchase Comparison</span>
+      </nav>
+
+      <h1 class="text-4xl font-bold text-gray-900">
+        Subscription vs Purchase Comparison
+      </h1>
+      <p class="mt-4 text-xl text-gray-600">
+        Estimate total and discounted costs of a cloud subscription model versus
+        a local buy-out solution for your smart lock deployment.
+      </p>
+    </div>
+
+    <SubscriptionVsPurchaseComparisonCalculator client:load />
+
+    <div class="mt-16 rounded-lg border border-gray-200 bg-gray-50 p-8">
+      <h2 class="text-2xl font-bold text-gray-900">What this comparison shows</h2>
+      <div class="mt-6 space-y-2 text-gray-700 text-sm">
+        <p>• Total nominal spend over the chosen time horizon</p>
+        <p>• Net present value (NPV) of both options using your discount rate</p>
+        <p>• Approximate breakeven year where subscription overtakes purchase</p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
